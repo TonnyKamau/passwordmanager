@@ -24,6 +24,20 @@ class _LoginPageState extends State<LoginPage> {
 
     if (email.isEmpty || password.isEmpty) {
       // Show an error message if email or password is empty
+      // You can customize this message as needed
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Please enter both email and password.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
       return;
     }
 
@@ -33,30 +47,68 @@ class _LoginPageState extends State<LoginPage> {
 
     // Call the login API
     final authService = AuthService();
-    final success = await authService.login(email, password);
+    try {
+      final success = await authService.login(email, password);
 
-    setState(() {
-      isLoading = false; // Set loading state to false after login attempt
-    });
-
-    if (success) {
-      // get replace paths
-      Get.offAllNamed('/home');
-    } else {
-      // Show an error message if login failed
+      if (success) {
+        // Navigate to the home page if login succeeds
+        Get.offAllNamed('/home');
+      } else {
+        // Show an error message if login failed
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Login Failed'),
+            content: Text('Invalid email or password. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK',
+                 style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      // Handle other errors, such as network errors
+      print('Login error: $e');
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Login Failed'),
-          content: Text('Invalid email or password. Please try again.'),
+          title: Text('Error',
+           style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+          ),
+          content: Text('An error occurred. Please try again later.',
+           style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: Text('OK',
+               style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+              ),
             ),
           ],
         ),
       );
+    } finally {
+      setState(() {
+        isLoading = false; // Set loading state to false after login attempt
+      });
     }
   }
 
@@ -84,6 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Theme.of(context).colorScheme.onTertiary,
                   fontSize: 16,
                   fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(
@@ -115,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                   Text(
                     'Don\'t have an account?',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
                       fontFamily: 'OpenSans',
                     ),
@@ -143,11 +196,32 @@ class _LoginPageState extends State<LoginPage> {
           ),
           // Loading widget
           if (isLoading)
-            CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                Theme.of(context).colorScheme.onPrimary,
+           // dialogue with words saying logging in
+            Container(
+              color: Colors.black.withOpacity(0.5),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Logging in...',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontSize: 16,
+                        fontFamily: 'OpenSans',
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
+
         ],
       ),
     );

@@ -39,6 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Theme.of(context).colorScheme.onTertiary,
               fontSize: 16,
               fontFamily: 'OpenSans',
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(
@@ -75,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Text(
                 'Already have an account?',
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onTertiary,
                   fontSize: 16,
                   fontFamily: 'OpenSans',
                 ),

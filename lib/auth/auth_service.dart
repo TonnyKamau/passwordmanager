@@ -4,10 +4,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  static const String baseUrl =
+  static const String loginUrl =
       'https://dev-password-manager.up.railway.app/api/v1/accounts/login';
-  static const String accessTokenKey = 'access_token';
-  static const String refreshTokenKey = 'refresh_token';
+  static const String refreshTokenUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/token/refresh';
+  static const String logoutUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/accounts/logout';
+  static const String registerUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/accounts/signup';
 
   final storage = const FlutterSecureStorage();
 
@@ -16,7 +20,7 @@ class AuthService {
 
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/'),
+        Uri.parse('$loginUrl/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': apiKey,
@@ -29,10 +33,9 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        // Save tokens
-        await storage.write(key: accessTokenKey, value: data['access_token']);
-        await storage.write(key: refreshTokenKey, value: data['refresh_token']);
-
+        // Save tokens securely
+        await storage.write(key: 'token', value: data['token']);
+        await storage.write(key: 'userId', value: data['user']);
         return true;
       } else {
         // Failed login
@@ -45,64 +48,96 @@ class AuthService {
     }
   }
 
-  Future<bool> isTokenExpired() async {
-    final accessToken = await storage.read(key: accessTokenKey);
-    // Check if the access token is null or empty
-    if (accessToken == null || accessToken.isEmpty) {
-      // If access token is null or empty, consider it expired
-      return true;
+  //logout
+  Future<bool> logout() async {
+    final String apiKey = dotenv.env['API_KEY']!;
+    try {
+      final response = await http.post(
+        Uri.parse('$logoutUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        await storage.delete(key: 'token');
+        await storage.delete(key: 'userId');
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      // Error occurred during logout
+      print('Error: $e');
+      return false;
+    }
+  }
+
+  Future<String> refreshToken(String refreshToken) async {
+    final response = await http.post(
+      Uri.parse('$refreshTokenUrl/'),
+      body: jsonEncode({'refreshToken': refreshToken}),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      final newToken = responseData['token'];
+      // Store new token securely
+      await storage.write(key: 'token', value: newToken);
+      return newToken;
     } else {
-      // Implement your token expiration logic here
-      // For example, decode the access token (if it's a JWT) and check its expiry time
-      // Return true if the token is expired, false otherwise
-      // For illustration purposes, let's assume the token is a JWT and contains an 'exp' claim
-      final decodedToken = _decodeJwt(accessToken);
-      final expiryTime =
-          decodedToken['exp']; // Assuming 'exp' contains the expiry timestamp
-      final currentTime = DateTime.now().millisecondsSinceEpoch ~/
-          1000; // Current time in seconds
-
-      return expiryTime <
-          currentTime; // Token is expired if expiry time is before current time
+      throw Exception('Failed to refresh token: ${response.statusCode}');
     }
   }
 
-  // Example function to decode a JWT token (for illustration purposes)
-  Map<String, dynamic> _decodeJwt(String token) {
-    final parts = token.split('.');
+  bool isTokenExpired(String token) {
+    final expiryTime = parseExpiryTimeFromToken(token);
+    return DateTime.now().isAfter(expiryTime);
+  }
+
+  DateTime parseExpiryTimeFromToken(String token) {
+    // JWT tokens are typically composed of three parts separated by dots
+    List<String> parts = token.split('.');
     if (parts.length != 3) {
-      throw FormatException('Invalid JWT');
+      throw const FormatException('Invalid JWT token');
     }
 
-    final payload = parts[1];
-    final String normalizedPayload = base64Url.normalize(payload);
-    final String decodedPayload =
-        utf8.decode(base64Url.decode(normalizedPayload));
-    return json.decode(decodedPayload);
-  }
+    // Decode the second part of the token (payload)
+    String payloadString = parts[1];
+    String normalizedPayload =
+        payloadString.replaceAll('-', '+').replaceAll('_', '/');
+    String decodedPayload = utf8.decode(base64Url.decode(normalizedPayload));
 
-  // Function to log out if not using access token
-  Future<void> logoutIfNotUsingAccessToken() async {
-    final accessToken = await storage.read(key: accessTokenKey);
-    final refreshToken = await storage.read(key: refreshTokenKey);
+    // Parse the payload as JSON
+    Map<String, dynamic> payloadJson = json.decode(decodedPayload);
 
-    // Check if both access token and refresh token are null
-    if (accessToken == null && refreshToken == null) {
-      // If both tokens are null, log out the user
-      await logout();
+    // Extract the expiration time ('exp' claim) from the payload
+    dynamic exp = payloadJson['exp'];
+    if (exp == null || !(exp is num)) {
+      throw const FormatException(
+          'Invalid JWT token: missing or invalid "exp" claim');
     }
+
+    // Convert the expiration timestamp to a DateTime object
+    DateTime expiryTime =
+        DateTime.fromMillisecondsSinceEpoch((exp * 1000).toInt());
+
+    return expiryTime;
   }
 
-  Future<String?> getAccessToken() async {
-    return await storage.read(key: accessTokenKey);
-  }
+  Future<String?> getValidToken() async {
+    final token = await storage.read(key: 'token');
+    final refreshToken = await storage.read(key: 'refreshToken');
 
-  Future<String?> getRefreshToken() async {
-    return await storage.read(key: refreshTokenKey);
-  }
-
-  Future<void> logout() async {
-    await storage.delete(key: accessTokenKey);
-    await storage.delete(key: refreshTokenKey);
+    if (token != null && !isTokenExpired(token)) {
+      return token;
+    } else if (refreshToken != null) {
+      final newToken = await refreshToken;
+      return newToken;
+    } else {
+      return null; // No valid token or refresh token available
+    }
   }
 }
