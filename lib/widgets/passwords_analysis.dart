@@ -9,7 +9,7 @@ class PasswordsAnalysis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.2,
+      
       decoration: BoxDecoration(
         color: sideMenuColor,
         borderRadius: BorderRadius.circular(20),

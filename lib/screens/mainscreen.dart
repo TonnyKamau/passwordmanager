@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:passwordmanager/colors/colors.dart';
+import 'package:passwordmanager/themes/theme_provider.dart';
 import 'package:passwordmanager/widgets/listpart.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/widgets.dart';
 
@@ -15,7 +17,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,14 +58,16 @@ class _MainScreenState extends State<MainScreen> {
                           'assets/plus.svg',
                           width: 20,
                           height: 20,
+                          color: Theme.of(context).colorScheme.onTertiary,
                         ),
                         const SizedBox(width: 5),
-                        const Text(
+                        Text(
                           'ADD',
                           style: TextStyle(
                             fontFamily: 'Lato',
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
+                            color: Theme.of(context).colorScheme.onTertiary,
                           ),
                         ),
                         const SizedBox(width: 5),
@@ -72,70 +75,68 @@ class _MainScreenState extends State<MainScreen> {
                           'assets/down-arrow.svg',
                           width: 20,
                           height: 20,
+                          color: Theme.of(context).colorScheme.onTertiary,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.05),
                   // Search bar
+
                   Expanded(
-                    child: TextField(
-                      style: const TextStyle(
-                        color: sideMenuSelectedIconColor,
-                      ), // Set text color to white
+                    child: TextFormField(
+                      style: TextStyle(
+                        fontFamily: 'Lato',
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontSize: 16,
+                      ),
+                      cursorColor: Theme.of(context).colorScheme.inversePrimary,
                       decoration: InputDecoration(
                         hintText: 'Search',
-                        hintStyle: const TextStyle(
+                        hintStyle: TextStyle(
                           fontFamily: 'Lato',
-                          color: Colors.grey,
+                          color: Theme.of(context).colorScheme.onTertiary,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(8.0),
                           child: SvgPicture.asset(
                             'assets/search-alt-2.svg',
-                            width: 30,
-                            height: 30,
-                            color: Colors.grey,
+                            color: Theme.of(context).colorScheme.onTertiary,
                           ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                        ), // Adjust height
                         filled: true,
-                        fillColor: backColor,
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                          borderSide: BorderSide(color: Colors.grey),
+                        fillColor: Colors.transparent,
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 20),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.onTertiary,
+                            width: 0.5,
+                          ),
                         ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                          borderSide: BorderSide(color: Colors.grey),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.onTertiary,
+                              width: 0.5),
                         ),
                       ),
-                      cursorColor: Colors.grey,
                     ),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.05),
                   // Toggle switch
-                  Switch(
-                    activeTrackColor: sideMenuIconColor,
-                    inactiveTrackColor: backColor,
-                    inactiveThumbColor: sideMenuColor,
-                    value: isDarkMode,
-                    onChanged: (value) {
-                      setState(() {
-                        isDarkMode = value;
-                        // Add your logic to change the theme here
-                      });
-                    },
-                    activeColor: sideMenuSelectedIconColor,
-                  ),
+                  CupertinoSwitch(
+                      activeColor: Theme.of(context).colorScheme.inversePrimary,
+                      trackColor: Theme.of(context).colorScheme.onTertiary,
+                      thumbColor: const Color(0xFFFF971D),
+                      value: Provider.of<ThemeProvider>(context, listen: false)
+                          .isDarkMode,
+                      onChanged: (value) =>
+                          Provider.of<ThemeProvider>(context, listen: false)
+                              .toggleTheme()),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.05,
                   ),
@@ -147,6 +148,7 @@ class _MainScreenState extends State<MainScreen> {
                       'assets/user-shield-alt-1.svg',
                       width: 20,
                       height: 20,
+                      color: Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
                 ],
@@ -162,18 +164,27 @@ class _MainScreenState extends State<MainScreen> {
                 thickness: 1,
               ),
             ),
-            const Expanded(child: ListPart()),
+            const Expanded(flex: 5, child: ListPart()),
             //three horizontal cards
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
 
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: PasswordsAnalysis(),
             ),
+
+            const Expanded(
+              child: QuickTips(),
+            ),
+            //three card links
+            const Expanded(
+              child: Row(
+                children: [],
+              ),
+            ),
           ],
         ));
   }
 }
-

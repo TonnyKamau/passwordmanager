@@ -11,7 +11,8 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      color: sideMenuColor,
+      width: MediaQuery.of(context).size.width * 0.2,
+      color: Theme.of(context).colorScheme.inversePrimary,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,9 +25,35 @@ class SideMenu extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.1,
               height: 87,
               child: SvgPicture.asset(
-                'assets/lock-alt.svg',
+                'assets/lock.svg',
                 color: sideMenuIconColor,
               ),
+            ),
+          ),
+          const Spacer(),
+          // log out
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  'assets/logout.svg',
+                  color: sideMenuIconColor,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Text(
+                  'Log out',
+                  style: TextStyle(
+                    color: sideMenuIconColor,
+                    fontSize: 16,
+                    fontFamily: 'Lato',
+                  ),
+                ),
+              ],
             ),
           ),
           

@@ -37,6 +37,11 @@ dependencies:
 
   window_manager: ^0.3.8
   flutter_svg: ^2.0.10+1
+  provider: ^6.1.2
+  get: ^4.6.6
+  http: ^1.2.1
+  flutter_dotenv: ^5.1.0
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:
@@ -64,8 +69,10 @@ flutter:
     - assets/plus.svg
     - assets/down-arrow.svg
     - assets/search-alt-2.svg
-    - assets/lock-alt.svg
+    - assets/lock.svg
     - assets/user-shield-alt-1.svg
+    - assets/logout.svg
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

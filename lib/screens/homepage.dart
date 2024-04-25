@@ -9,9 +9,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: backColor,
-      body: SafeArea(
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: const SafeArea(
         child: Row(
           children: [
             Expanded(
