@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class AuthService {
   static const String logoutUrl =
       'https://dev-password-manager.up.railway.app/api/v1/accounts/logout';
   static const String registerUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/accounts/signup';
+      'https://dev-password-manager.up.railway.app/api/v1/accounts/user';
 
   final storage = const FlutterSecureStorage();
 
@@ -36,13 +37,55 @@ class AuthService {
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
+     
         return true;
+        
       } else {
         // Failed login
         return false;
       }
     } catch (e) {
       // Error occurred during login
+      print('Error: $e');
+      return false;
+    }
+  }
+
+  Future<bool> register(String email, String password) async {
+    final String apiKey = dotenv.env['API_KEY']!;
+    try {
+      final response = await http.post(
+        Uri.parse('$registerUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password,
+        }),
+      );
+        
+      if (response.statusCode == 201) {
+        final data = json.decode(response.body);
+        // Save tokens securely
+        await storage.write(key: 'token', value: data['token']);
+        await storage.write(key: 'userId', value: data['user']);
+        // Log in the user after successful sign-up
+        final bool loginSuccess = await login(email, password);
+        return loginSuccess;
+      } else if (response.statusCode == 409) {
+        // User already exists
+        // Show a dialog informing the user
+        const bool emailUsed =true;
+
+        return emailUsed;
+      } else {
+        // Failed sign-up
+        return false;
+      }
+    } catch (e) {
+      // Error occurred during sign-up
       print('Error: $e');
       return false;
     }
