@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
@@ -11,6 +11,7 @@ class MyButton extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: Container(
+          width: MediaQuery.of(context).size.width * 0.4,
           padding: const EdgeInsets.all(25),
           margin: const EdgeInsets.symmetric(horizontal: 25),
           decoration: BoxDecoration(

@@ -9,10 +9,8 @@ class PasswordsAnalysis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       decoration: BoxDecoration(
-        color: sideMenuColor,
-        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).colorScheme.inversePrimary,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,9 +27,9 @@ class PasswordsAnalysis extends StatelessWidget {
                 ),
               ),
               width: MediaQuery.of(context).size.width * 0.3,
-              child: const Padding(
-                padding: EdgeInsets.only(
-                    left: 20, right: 20, top: 20, bottom: 10),
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +37,7 @@ class PasswordsAnalysis extends StatelessWidget {
                     Text(
                       '28',
                       style: TextStyle(
-                        color: sideMenuSelectedIconColor,
+                        color: Theme.of(context).colorScheme.onTertiary,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
@@ -48,7 +46,7 @@ class PasswordsAnalysis extends StatelessWidget {
                     Text(
                       'Saved Passwords',
                       style: TextStyle(
-                        color: sideMenuSelectedIconColor,
+                        color: Theme.of(context).colorScheme.onTertiary,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
@@ -60,32 +58,32 @@ class PasswordsAnalysis extends StatelessWidget {
             ),
           ),
           //strong
-              Expanded(
+          Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: const Padding(
-                padding:  EdgeInsets.only(left:20, right:20, top:20, bottom:10),
-                child:  Column(
+              child: Padding(
+                padding:
+                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '28',
                       style: TextStyle(
-                        color: sideMenuSelectedIconColor,
+                        color: Theme.of(context).colorScheme.onTertiary,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Strong',
                       style: TextStyle(
                         color: Colors.greenAccent,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
-                        
                       ),
                     ),
                   ],
@@ -94,25 +92,26 @@ class PasswordsAnalysis extends StatelessWidget {
             ),
           ),
           // weak
-               Expanded(
+          Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: const Padding(
-                padding:  EdgeInsets.only(left:20, right:20, top:20, bottom:10),
-                child:  Column(
+              child: Padding(
+                padding:
+                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '28',
                       style: TextStyle(
-                        color: sideMenuSelectedIconColor,
+                        color:Theme.of(context).colorScheme.onTertiary,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Weak',
                       style: TextStyle(
                         color: Colors.redAccent,
@@ -127,25 +126,26 @@ class PasswordsAnalysis extends StatelessWidget {
             ),
           ),
           //duplicate
-              Expanded(
+          Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: const Padding(
-                padding:  EdgeInsets.only(left:20, right:20, top:20, bottom:10),
-                child:  Column(
+              child:  Padding(
+                padding:
+                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '28',
                       style: TextStyle(
-                        color: sideMenuSelectedIconColor,
+                        color: Theme.of(context).colorScheme.onTertiary,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
                     ),
-                    Text(
+                   const Text(
                       'Duplicate',
                       style: TextStyle(
                         color: Colors.orangeAccent,
