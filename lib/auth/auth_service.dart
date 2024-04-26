@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -13,6 +13,10 @@ class AuthService {
       'https://dev-password-manager.up.railway.app/api/v1/accounts/logout';
   static const String registerUrl =
       'https://dev-password-manager.up.railway.app/api/v1/accounts/user';
+  static const String forgotPasswordUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/accounts/reset-password';
+  static const String resetPasswordUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/accounts/confirm-password-reset';
 
   final storage = const FlutterSecureStorage();
 
@@ -37,9 +41,8 @@ class AuthService {
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
-     
+
         return true;
-        
       } else {
         // Failed login
         return false;
@@ -65,7 +68,7 @@ class AuthService {
           'password': password,
         }),
       );
-        
+
       if (response.statusCode == 201) {
         final data = json.decode(response.body);
         // Save tokens securely
@@ -77,7 +80,7 @@ class AuthService {
       } else if (response.statusCode == 409) {
         // User already exists
         // Show a dialog informing the user
-        const bool emailUsed =true;
+        const bool emailUsed = true;
 
         return emailUsed;
       } else {
@@ -86,6 +89,63 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during sign-up
+      print('Error: $e');
+      return false;
+    }
+  }
+  //forgot password
+  Future<bool> forgotPassword(String email) async {
+    final String apiKey = dotenv
+        .env['API_KEY']!; // Get the API key from the .env file using the dotenv package
+    try {
+      final response = await http.post(
+        Uri.parse('$forgotPasswordUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Failed to send password reset email
+        return false;
+      }
+    } catch (e) {
+      // Error occurred during password reset
+      print('Error: $e');
+      return false;
+    }
+  }
+  //reset password
+  Future<bool> resetPassword(String email, String newPassword, String verificationCode) async {
+    final String apiKey = dotenv.env['API_KEY']!;
+    try {
+      final response = await http.post(
+        Uri.parse('$resetPasswordUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'new_password': newPassword,
+          'verification_code': verificationCode,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        // Failed to reset password
+        return false;
+      }
+    } catch (e) {
+      // Error occurred during password reset
       print('Error: $e');
       return false;
     }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
+import 'package:passwordmanager/widgets/my_password.dart';
 
 import '../widgets/widgets.dart';
 
@@ -211,17 +212,17 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 10,
             ),
-            MyTextField(
+            MyPassword(
                 controller: passwordController,
                 hintText: 'Password',
-                obscureText: true),
+               ),
             const SizedBox(
               height: 10,
             ),
-            MyTextField(
+            MyPassword(
                 controller: confirmPasswordController,
                 hintText: 'Confirm Password',
-                obscureText: true),
+                ),
             const SizedBox(
               height: 25,
             ),

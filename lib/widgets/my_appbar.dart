@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:passwordmanager/colors/colors.dart';
 import 'package:passwordmanager/themes/theme_provider.dart';
-import 'package:passwordmanager/widgets/my_textfield.dart';
+
 import 'package:provider/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
