@@ -28,8 +28,18 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Error'),
-          content: Text('Please enter both email and password.'),
+          title: Text('Error',
+           style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+          ),
+          content: Text('Please enter both email and password.',
+           style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -58,8 +68,18 @@ class _LoginPageState extends State<LoginPage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Login Failed'),
-            content: Text('Invalid email or password. Please try again.'),
+            title: Text('Login Failed',
+             style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+            ),
+            content: Text('Invalid email or password. Please try again.',
+             style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
+                ),
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),

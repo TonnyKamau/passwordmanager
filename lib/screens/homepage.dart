@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:passwordmanager/colors/colors.dart';
 import 'package:passwordmanager/screens/screens.dart';
 import 'package:passwordmanager/widgets/sidemenu.dart';
 
@@ -11,18 +10,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: const SafeArea(
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: SideMenu()),
-            Expanded(
-              flex: 10,
-              child: MainScreen(),
-            ),
-          ],
-        ),
+      body: const Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: SideMenu()),
+          Expanded(
+            flex: 10,
+            child: MainScreen(),
+          ),
+        ],
       ),
     );
   }

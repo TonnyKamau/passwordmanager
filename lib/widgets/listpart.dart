@@ -14,9 +14,10 @@ class ListPart extends StatelessWidget {
         Expanded(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.inversePrimary,
-              borderRadius: BorderRadius.circular(20),
+             
             ),
             child: CustomScrollView(
               slivers: <Widget>[
@@ -43,7 +44,7 @@ class ListPart extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color: Theme.of(context).colorScheme.primary,
                                 width: 1,
                               ),
                             ),
@@ -96,9 +97,9 @@ class ListPart extends StatelessWidget {
         Expanded(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.inversePrimary,
-              borderRadius: BorderRadius.circular(20),
             ),
             child: CustomScrollView(
               slivers: <Widget>[

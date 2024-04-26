@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/colors/colors.dart';
 
+
 class SideMenu extends StatefulWidget {
-  const SideMenu({
-    super.key,
-  });
+  const SideMenu({Key? key}) : super(key: key);
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -15,47 +14,53 @@ class SideMenu extends StatefulWidget {
 
 class _SideMenuState extends State<SideMenu> {
   bool isLoading = false;
+
   Future<void> logout() async {
     try {
-      // Show logout dialog with loading indicator
+      // Set loading state to true
+      setState(() {
+        isLoading = true;
+      });
+
+      // Show loading dialog
       showDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return Dialog(
-            backgroundColor: Theme.of(context).colorScheme.onTertiary,
-            elevation: 0,
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).colorScheme.onPrimary,
                     ),
-                    const SizedBox(height: 20),
-                    Text(
-                      'Logging out...',
-                      style: TextStyle(color: Theme.of(context).colorScheme.onTertiary,),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Logging out...',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 16,
+                      fontFamily: 'Lato',
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );
         },
       );
 
+      // Call the logout API
       AuthService authService = AuthService();
       final bool success = await authService.logout();
 
-      // Close logout dialog
-      Navigator.of(context).pop();
+      // Close loading dialog
+      Navigator.pop(context);
 
       if (success) {
         // Navigate to the login page after successful logout
@@ -65,22 +70,23 @@ class _SideMenuState extends State<SideMenu> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Logout Failed'),
-            content:
-                Text('An error occurred while logging out. Please try again.',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
-                ),
+            title: Text('Logout Failed'),
+            content: Text(
+              'An error occurred while logging out. Please try again.',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'OpenSans',
+              ),
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context), // Close dialog
-                child: Text('OK',
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  color: Theme.of(context).colorScheme.onTertiary,
-                ),
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    color: Theme.of(context).colorScheme.onTertiary,
+                  ),
                 ),
               ),
             ],
@@ -89,25 +95,37 @@ class _SideMenuState extends State<SideMenu> {
       }
     } catch (e) {
       print('Error during logout: $e');
-      // Close logout dialog if an error occurs
-      Navigator.of(context).pop();
+      // Close loading dialog if an error occurs
+      Navigator.pop(context);
+    } finally {
+      // Set loading state to false
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.inversePrimary,
+        border: Border(
+          right: BorderSide(
+            color: Theme.of(context).colorScheme.onTertiary,
+            width: 1,
+          ),
+        ),
+      ),
       height: double.infinity,
       width: MediaQuery.of(context).size.width * 0.2,
-      color: Theme.of(context).colorScheme.inversePrimary,
+      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.1,
               height: 87,
@@ -118,7 +136,7 @@ class _SideMenuState extends State<SideMenu> {
             ),
           ),
           const Spacer(),
-          // log out
+          // Logout button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: GestureDetector(
@@ -142,10 +160,7 @@ class _SideMenuState extends State<SideMenu> {
               ),
             ),
           ),
-
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
         ],
       ),
     );

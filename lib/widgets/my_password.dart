@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
+class MyPassword extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  const MyTextField(
+  const MyPassword(
       {super.key,
       required this.controller,
       required this.hintText,
