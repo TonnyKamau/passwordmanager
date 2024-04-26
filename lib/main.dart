@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:passwordmanager/screens/homepage.dart';
-import 'package:passwordmanager/screens/login_page.dart';
-import 'package:passwordmanager/screens/register_page.dart';
+import 'package:passwordmanager/screens/screens.dart';
 import 'package:passwordmanager/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
@@ -13,8 +11,8 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
-    size: Size(800, 600),
-    minimumSize: Size(800, 600),
+    size: Size(1000, 600),
+    minimumSize: Size(1000, 600),
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
@@ -42,6 +40,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/register': (context) => const RegisterPage(),
         '/home': (context) => const HomePage(),
+        '/forgot-password': (context) => const ForgotPasswordPage(),
+        '/password-reset': (context) => const PasswordResetPage(),
       },
       title: 'Password Manager',
       debugShowCheckedModeBanner: false,

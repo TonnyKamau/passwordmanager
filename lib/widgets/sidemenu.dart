@@ -124,16 +124,20 @@ class _SideMenuState extends State<SideMenu> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.1,
-              height: 87,
-              child: SvgPicture.asset(
-                'assets/lock.svg',
-                color: sideMenuIconColor,
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: SvgPicture.asset(
+                    'assets/lock.svg',
+                    color: sideMenuIconColor,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
           const Spacer(),
           // Logout button

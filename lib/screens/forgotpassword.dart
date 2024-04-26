@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 
-import '../widgets/widgets.dart';
+import 'package:passwordmanager/widgets/my_textfield.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  bool isLoading = false; // Track loading state
-
-  Future<void> login() async {
+  bool isLoading = false;
+  //forgot password function
+  Future<void> forgotPassword() async {
     final String email = emailController.text.trim();
-    final String password = passwordController.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
-      // Show an error message if email or password is empty
+    if (email.isEmpty) {
+      // Show an error message if email is empty
       // You can customize this message as needed
       showDialog(
         context: context,
@@ -36,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           content: Text(
-            'Please enter both email and password.',
+            'Please enter email',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
               fontFamily: 'OpenSans',
@@ -60,25 +58,26 @@ class _LoginPageState extends State<LoginPage> {
     // Call the login API
     final authService = AuthService();
     try {
-      final success = await authService.login(email, password);
+      final success = await authService.forgotPassword(email);
 
       if (success) {
-        // Navigate to the home page if login succeeds
-        Get.offAllNamed('/home');
+        // Navigate to the reset password
+        Get.offAllNamed('/password-reset');
       } else {
-        // Show an error message if login failed
+        // Show an error message if reset failed
+        // You can customize this message as needed
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: Text(
-              'Login Failed',
+              'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
                 fontFamily: 'OpenSans',
               ),
             ),
             content: Text(
-              'Invalid email or password. Please try again.',
+              'An error occurred. Please try again later.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
                 fontFamily: 'OpenSans',
@@ -143,101 +142,67 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        //backbutton
+        leading: Material(
+          color: Colors.transparent,
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Get.back();
+            },
+            color: Theme.of(context).colorScheme.onTertiary,
+            splashColor: Colors.transparent,
+            highlightColor: Colors
+                .transparent, // Additionally set highlight color to transparent
+            hoverColor:
+                Colors.transparent, // Set hover color to transparent if needed
+          ),
+        ),
+      ),
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'assets/lock.svg',
-                color: Theme.of(context).colorScheme.onTertiary,
-                height: 100,
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Text(
-                'Password Manager',
-                style: TextStyle(
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/lock.svg',
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontSize: 16,
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.w600,
+                  height: 100,
                 ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              MyTextField(
-                controller: emailController,
-                hintText: 'Email',
-                obscureText: false,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              MyPassword(
-                controller: passwordController,
-                hintText: 'Password',
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              MyButton(text: 'Sign in', onTap: login),
-              const SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account?',
+                const SizedBox(
+                  height: 25,
+                ),
+                const Text(
+                  'Forgot Password/ Reset Password',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                    controller: emailController,
+                    hintText: 'Email to reset password',
+                    obscureText: false),
+                const SizedBox(height: 10),
+                GestureDetector(
+                  onTap: forgotPassword,
+                  child: Text(
+                    'Reset Password',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
                       fontFamily: 'OpenSans',
+                      decoration: TextDecoration.underline,
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed('/register');
-                    },
-                    child: Text(
-                      'Sign up',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onTertiary,
-                        fontSize: 16,
-                        fontFamily: 'OpenSans',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              //forgot password
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed('/forgot-password');
-                },
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontSize: 16,
-                    fontFamily: 'OpenSans',
-                    decoration: TextDecoration.underline,
-                   
-                  ),
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
-          // Loading widget
           if (isLoading)
             // dialogue with words saying logging in
             Container(
@@ -253,7 +218,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     Text(
-                      'Logging in...',
+                      'resetting...',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
