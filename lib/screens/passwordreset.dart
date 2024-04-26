@@ -233,21 +233,10 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               const SizedBox(height: 20),
               MyTextField(
                   controller: passwordResetController,
-                  hintText: 'reset code',
+                  hintText: 'Reset code sent to the email address',
                   obscureText: false),
-                  const SizedBox(height: 10),
-              GestureDetector(
-                onTap: resetPassword,
-                child: Text(
-                  'Confirm Reset',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontSize: 16,
-                    fontFamily: 'OpenSans',
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              )
+              const SizedBox(height: 10),
+              MyButton(text: 'Confirm Reset', onTap: resetPassword),
             ],
           ),
         ),

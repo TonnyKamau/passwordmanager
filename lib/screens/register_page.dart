@@ -224,11 +224,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: 'Confirm Password',
                 ),
             const SizedBox(
-              height: 25,
+              height: 15,
             ),
             MyButton(text: 'Sign up', onTap: register),
             const SizedBox(
-              height: 25,
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
+import 'package:passwordmanager/widgets/my_button.dart';
 
 import 'package:passwordmanager/widgets/my_textfield.dart';
 
@@ -187,19 +188,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     controller: emailController,
                     hintText: 'Email to reset password',
                     obscureText: false),
-                const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: forgotPassword,
-                  child: Text(
-                    'Reset Password',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onTertiary,
-                      fontSize: 16,
-                      fontFamily: 'OpenSans',
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                )
+                const SizedBox(height: 20),
+                MyButton(text: 'Reset Password', onTap: forgotPassword),
               ],
             ),
           ),
