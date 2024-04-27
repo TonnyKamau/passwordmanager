@@ -30,14 +30,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Please enter all fields.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -47,7 +47,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -76,14 +76,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Success',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Email verified successfully.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -95,7 +95,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -113,14 +113,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Email verification failed. Please try again.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -130,7 +130,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -148,11 +148,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SvgPicture.asset(
-                'assets/lock.svg',
-                color: Theme.of(context).colorScheme.onTertiary,
-                height: 100,
-              ),
+             const MyLogo(),
               const SizedBox(
                 height: 10,
               ),
@@ -161,7 +157,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
               const SizedBox(height: 20),
@@ -197,7 +193,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'OpenSans',
+                      fontFamily: 'Lato',
                     ),
                   ),
                 ],

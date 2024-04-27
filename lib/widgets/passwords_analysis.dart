@@ -63,7 +63,7 @@ class PasswordsAnalysis extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.3,
               child: Padding(
                 padding:
-                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,7 @@ class PasswordsAnalysis extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.3,
               child: Padding(
                 padding:
-                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +131,7 @@ class PasswordsAnalysis extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.3,
               child:  Padding(
                 padding:
-                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -38,7 +38,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print(data.toString);
+
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
@@ -49,8 +49,6 @@ class AuthService {
         return false;
       }
     } catch (e) {
-      // Error occurred during login
-      print('Error: $e');
       return false;
     }
   }
@@ -89,7 +87,7 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during sign-up
-      print('Error: $e');
+
       return false;
     }
   }
@@ -97,11 +95,11 @@ class AuthService {
   // Verify email address
   Future<bool> verifyEmail(String email, String verificationCode) async {
     final String apiKey = dotenv.env['API_KEY']!;
-    final user_id = await storage.read(key: 'userId');
+    final userId = await storage.read(key: 'userId');
 
     try {
       final response = await http.post(
-        Uri.parse('$registerUrl/$user_id/confirm-code/'),
+        Uri.parse('$registerUrl/$userId/confirm-code/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': apiKey,
@@ -120,7 +118,7 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during email verification
-      print('Error: $e');
+
       return false;
     }
   }
@@ -149,7 +147,7 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during password reset
-      print('Error: $e');
+
       return false;
     }
   }
@@ -179,8 +177,6 @@ class AuthService {
         return false;
       }
     } catch (e) {
-      // Error occurred during password reset
-      print('Error: $e');
       return false;
     }
   }
@@ -196,7 +192,7 @@ class AuthService {
           'Authorization': apiKey,
         },
       );
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         await storage.delete(key: 'token');
         await storage.delete(key: 'userId');
@@ -206,7 +202,7 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during logout
-      print('Error: $e');
+
       return false;
     }
   }

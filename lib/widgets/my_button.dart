@@ -25,7 +25,7 @@ class MyButton extends StatelessWidget {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.background,
                 fontSize: 16,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
                 fontWeight: FontWeight.w600,
               ),
             ),

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 
@@ -7,11 +7,11 @@ class MyPassword extends StatefulWidget {
   final String hintText;
 
   const MyPassword({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
    
-  }) : super(key: key);
+  });
 
   @override
   _MyPasswordState createState() => _MyPasswordState();
@@ -41,7 +41,7 @@ class _MyPasswordState extends State<MyPassword> {
             hintText: widget.hintText,
             hintStyle: TextStyle(
               color: Theme.of(context).colorScheme.primary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
             border: InputBorder.none, // Hide the default border
             contentPadding: const EdgeInsets.symmetric(

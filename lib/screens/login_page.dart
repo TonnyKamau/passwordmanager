@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
@@ -32,20 +31,20 @@ class _LoginPageState extends State<LoginPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Please enter both email and password.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -74,14 +73,14 @@ class _LoginPageState extends State<LoginPage> {
               'Login Failed',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             content: Text(
               'Invalid email or password. Please try again.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             actions: [
@@ -91,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                   ),
                 ),
               ),
@@ -101,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
       }
     } catch (e) {
       // Handle other errors, such as network errors
-      print('Login error: $e');
+      
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -109,14 +108,14 @@ class _LoginPageState extends State<LoginPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -126,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -150,11 +149,7 @@ class _LoginPageState extends State<LoginPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                'assets/lock.svg',
-                color: Theme.of(context).colorScheme.onTertiary,
-                height: 100,
-              ),
+              const MyLogo(),
               const SizedBox(
                 height: 25,
               ),
@@ -163,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
                   fontSize: 16,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -197,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'OpenSans',
+                      fontFamily: 'Lato',
                     ),
                   ),
                   const SizedBox(
@@ -212,7 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
-                        fontFamily: 'OpenSans',
+                        fontFamily: 'Lato',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -229,9 +224,8 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 16,
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                     decoration: TextDecoration.underline,
-                   
                   ),
                 ),
               ),
@@ -257,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
-                        fontFamily: 'OpenSans',
+                        fontFamily: 'Lato',
                       ),
                     ),
                   ],
