@@ -33,7 +33,7 @@ class MyTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle: TextStyle(
               color: Theme.of(context).colorScheme.primary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
             border: InputBorder.none, // Hide the default border
             contentPadding: const EdgeInsets.symmetric(

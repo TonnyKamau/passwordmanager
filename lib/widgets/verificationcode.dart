@@ -1,5 +1,5 @@
 // create a verification code input
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -24,12 +24,12 @@ class _VerificationCodeState extends State<VerificationCode> {
           controller: widget.controller,
           length: 6,
           obscureText:
-              true, // Initially set to true for obscuring with asterisks
+              false, // Initially set to true for obscuring with asterisks
           animationType: AnimationType.fade,
           textStyle: TextStyle(
             fontSize: 20,
             color: Theme.of(context).colorScheme.onTertiary,
-            fontFamily: 'OpenSans',
+            fontFamily: 'Lato',
           ),
           pinTheme: PinTheme(
             shape: PinCodeFieldShape.box,
@@ -59,7 +59,7 @@ class _VerificationCodeState extends State<VerificationCode> {
             debugPrint(value);
           },
           beforeTextPaste: (String? text) {
-            return false; // Prevent pasting text into the field
+            return true; // Prevent pasting text into the field
           },
           hintCharacter: '*',
           obscuringCharacter: '*',

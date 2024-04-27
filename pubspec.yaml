@@ -44,9 +44,17 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   shared_preferences: ^2.2.3
   pin_code_fields: ^8.0.1
-  
- 
-
+  flutter_launcher_icons: ^0.13.1
+    
+flutter_launcher_icons:
+  windows:
+    generate: true
+    image_path: "assets/launchicons/fraudprotect.png"
+    icon_size: 48 
+    min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/launchicons/fraudprotect.png"  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,10 +82,11 @@ flutter:
     - assets/down-arrow.svg
     - assets/search-alt-2.svg
     - assets/lock.svg
+    - assets/fraud.svg
     - assets/user-shield-alt-1.svg
     - assets/logout.svg
     - .env
-
+ 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

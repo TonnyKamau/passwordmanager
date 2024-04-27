@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../widgets/widgets.dart';
 
@@ -43,7 +41,6 @@ class _MainScreenState extends State<MainScreen> {
                 children: [],
               ),
             ),
-            
           ],
         ));
   }

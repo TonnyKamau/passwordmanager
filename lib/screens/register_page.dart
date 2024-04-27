@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
-import 'package:passwordmanager/widgets/my_password.dart';
 
 import '../widgets/widgets.dart';
 
@@ -32,25 +30,28 @@ class _RegisterPageState extends State<RegisterPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Error',
-           style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+          title: Text(
+            'Error',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'Lato',
+            ),
           ),
-          content: Text('Please enter all fields.',
-           style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+          content: Text(
+            'Please enter all fields.',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'Lato',
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK',
-               style: TextStyle(
+              child: Text(
+                'OK',
+                style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -66,25 +67,28 @@ class _RegisterPageState extends State<RegisterPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Error',
-           style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+          title: Text(
+            'Error',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'Lato',
+            ),
           ),
-          content: Text('Passwords do not match.',
-           style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+          content: Text(
+            'Passwords do not match.',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'Lato',
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK',
-               style: TextStyle(
+              child: Text(
+                'OK',
+                style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -112,26 +116,29 @@ class _RegisterPageState extends State<RegisterPage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Error',
-             style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+            title: Text(
+              'Error',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
             ),
-            content: Text('Registration failed. Please try again.',
-             style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+            content: Text(
+              'Registration failed. Please try again.',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text('OK',
-                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                  ),
                 ),
               ),
             ],
@@ -144,25 +151,28 @@ class _RegisterPageState extends State<RegisterPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Error',
-           style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+          title: Text(
+            'Error',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'Lato',
+            ),
           ),
-          content: Text('An error occurred. Please try again.',
-           style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
-                ),
+          content: Text(
+            'An error occurred. Please try again.',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'Lato',
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK',
-               style: TextStyle(
+              child: Text(
+                'OK',
+                style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -185,11 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/lock.svg',
-              color: Theme.of(context).colorScheme.onTertiary,
-              height: 100,
-            ),
+            const MyLogo(),
             const SizedBox(
               height: 25,
             ),
@@ -198,7 +204,7 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
                 fontSize: 16,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -213,16 +219,16 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 10,
             ),
             MyPassword(
-                controller: passwordController,
-                hintText: 'Password',
-               ),
+              controller: passwordController,
+              hintText: 'Password',
+            ),
             const SizedBox(
               height: 10,
             ),
             MyPassword(
-                controller: confirmPasswordController,
-                hintText: 'Confirm Password',
-                ),
+              controller: confirmPasswordController,
+              hintText: 'Confirm Password',
+            ),
             const SizedBox(
               height: 15,
             ),
@@ -238,7 +244,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 16,
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                   ),
                 ),
                 const SizedBox(
@@ -253,7 +259,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'OpenSans',
+                      fontFamily: 'Lato',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -282,7 +288,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'OpenSans',
+                      fontFamily: 'Lato',
                     ),
                   ),
                 ],

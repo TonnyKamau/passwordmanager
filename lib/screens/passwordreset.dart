@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/widgets/widgets.dart';
@@ -31,14 +31,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Please enter all fields.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -48,7 +48,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -76,14 +76,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               'Success',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             content: Text(
               'Password reset successful.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             actions: [
@@ -95,7 +95,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                   ),
                 ),
               ),
@@ -112,14 +112,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             content: Text(
               'An error occurred. Please try again later.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             actions: [
@@ -129,7 +129,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                   ),
                 ),
               ),
@@ -139,7 +139,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
       }
     } catch (e) {
       // Handle other errors, such as network errors
-      print('Reset password error: $e');
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -147,14 +147,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -164,7 +164,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -205,11 +205,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                'assets/lock.svg',
-                color: Theme.of(context).colorScheme.onTertiary,
-                height: 100,
-              ),
+              const MyLogo(),
               const SizedBox(
                 height: 25,
               ),
@@ -258,7 +254,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'OpenSans',
+                      fontFamily: 'Lato',
                     ),
                   ),
                 ],

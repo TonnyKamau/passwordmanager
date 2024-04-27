@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/widgets/my_button.dart';
+import 'package:passwordmanager/widgets/my_logo.dart';
 
 import 'package:passwordmanager/widgets/my_textfield.dart';
 
@@ -31,20 +32,20 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Please enter email',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -74,14 +75,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             content: Text(
               'An error occurred. Please try again later.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             actions: [
@@ -91,7 +92,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                   ),
                 ),
               ),
@@ -101,7 +102,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       }
     } catch (e) {
       // Handle other errors, such as network errors
-      print('Login error: $e');
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -109,14 +110,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -126,7 +127,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -168,11 +169,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/lock.svg',
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  height: 100,
-                ),
+                const MyLogo(),
                 const SizedBox(
                   height: 25,
                 ),
@@ -212,7 +209,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
-                        fontFamily: 'OpenSans',
+                        fontFamily: 'Lato',
                       ),
                     ),
                   ],

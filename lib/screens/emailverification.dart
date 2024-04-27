@@ -30,14 +30,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Please enter all fields.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -47,7 +47,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -62,8 +62,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
     // Call the resetPassword function from the AuthService class
     // This function will send a password reset email to the user
     // and return a boolean value based on the success of the operation
-    final isVerified =
-        await AuthService().verifyEmail(email, verificationCode);
+    final isVerified = await AuthService().verifyEmail(email, verificationCode);
     setState(() {
       isLoading = false;
     });
@@ -77,14 +76,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Success',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Email verified successfully.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -96,7 +95,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -114,14 +113,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           content: Text(
             'Email verification failed. Please try again.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'OpenSans',
+              fontFamily: 'Lato',
             ),
           ),
           actions: [
@@ -131,7 +130,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
             ),
@@ -144,33 +143,12 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Material(
-          color: Colors.transparent,
-          child: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Get.back();
-            },
-            color: Theme.of(context).colorScheme.onTertiary,
-            splashColor: Colors.transparent,
-            highlightColor: Colors
-                .transparent, // Additionally set highlight color to transparent
-            hoverColor:
-                Colors.transparent, // Set hover color to transparent if needed
-          ),
-        ),
-      ),
       body: Stack(children: [
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SvgPicture.asset(
-                'assets/lock.svg',
-                color: Theme.of(context).colorScheme.onTertiary,
-                height: 100,
-              ),
+             const MyLogo(),
               const SizedBox(
                 height: 10,
               ),
@@ -179,7 +157,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Lato',
                 ),
               ),
               const SizedBox(height: 20),
@@ -215,7 +193,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'OpenSans',
+                      fontFamily: 'Lato',
                     ),
                   ),
                 ],

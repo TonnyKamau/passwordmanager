@@ -3,10 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/colors/colors.dart';
+import 'package:passwordmanager/widgets/widgets.dart';
 
 
 class SideMenu extends StatefulWidget {
-  const SideMenu({Key? key}) : super(key: key);
+  const SideMenu({super.key});
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -70,12 +71,12 @@ class _SideMenuState extends State<SideMenu> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Logout Failed'),
+            title: const Text('Logout Failed'),
             content: Text(
               'An error occurred while logging out. Please try again.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
+                fontFamily: 'Lato',
               ),
             ),
             actions: [
@@ -84,7 +85,7 @@ class _SideMenuState extends State<SideMenu> {
                 child: Text(
                   'OK',
                   style: TextStyle(
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Lato',
                     color: Theme.of(context).colorScheme.onTertiary,
                   ),
                 ),
@@ -124,17 +125,14 @@ class _SideMenuState extends State<SideMenu> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SizedBox(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child:  SizedBox(
                   width: 50,
                   height: 50,
-                  child: SvgPicture.asset(
-                    'assets/lock.svg',
-                    color: sideMenuIconColor,
-                  ),
+                  child: MyLogo(),
                 ),
               ),
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:passwordmanager/colors/colors.dart';
 import 'package:passwordmanager/themes/theme_provider.dart';
@@ -92,7 +92,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                       hintText: 'Search',
                       hintStyle: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
-                        fontFamily: 'OpenSans',
+                        fontFamily: 'Lato',
                       ),
                       border: InputBorder.none, // Hide the default border
                       contentPadding: const EdgeInsets.symmetric(
@@ -103,7 +103,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-               SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.05),
               // Toggle switch
               CupertinoSwitch(
                   activeColor: Theme.of(context).colorScheme.inversePrimary,
