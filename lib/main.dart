@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/forgot-password': (context) => const ForgotPasswordPage(),
         '/password-reset': (context) => const PasswordResetPage(),
+        '/email-verification': (context) => const EmailVerificationPage(),
       },
       title: 'Password Manager',
       debugShowCheckedModeBanner: false,

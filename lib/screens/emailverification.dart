@@ -4,24 +4,23 @@ import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/widgets/widgets.dart';
 
-class PasswordResetPage extends StatefulWidget {
-  const PasswordResetPage({super.key});
+class EmailVerificationPage extends StatefulWidget {
+  const EmailVerificationPage({super.key});
 
   @override
-  State<PasswordResetPage> createState() => _PasswordResetPageState();
+  State<EmailVerificationPage> createState() => _EmailVerificationPageState();
 }
 
-class _PasswordResetPageState extends State<PasswordResetPage> {
+class _EmailVerificationPageState extends State<EmailVerificationPage> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordResetController = TextEditingController();
+  final TextEditingController verifyController = TextEditingController();
   bool isLoading = false;
-  Future resetPassword() async {
+  // function to email verification code
+  Future<void> verifyEmail() async {
     final String email = emailController.text.trim();
-    final String newPassword = passwordController.text.trim();
-    final String verificationCode = passwordResetController.text.trim();
+    final String verificationCode = verifyController.text.trim();
 
-    if (email.isEmpty || newPassword.isEmpty || verificationCode.isEmpty) {
+    if (email.isEmpty || verificationCode.isEmpty) {
       // Show an error message if email or password is empty
       // You can customize this message as needed
       showDialog(
@@ -58,88 +57,56 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
       return;
     }
     setState(() {
-      isLoading = true; // Set loading state to true
+      isLoading = true;
     });
-
-    // Call the login API
-    final authService = AuthService();
-    try {
-      final bool success =
-          await authService.resetPassword(email, newPassword, verificationCode);
-
-      if (success) {
-        // Show a success message
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              'Success',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
-              ),
+    // Call the resetPassword function from the AuthService class
+    // This function will send a password reset email to the user
+    // and return a boolean value based on the success of the operation
+    final isVerified =
+        await AuthService().verifyEmail(email, verificationCode);
+    setState(() {
+      isLoading = false;
+    });
+    if (isVerified) {
+      // Show a success message if the password reset email was sent successfully
+      // You can customize this message as needed
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            'Success',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'OpenSans',
             ),
-            content: Text(
-              'Password reset successful.',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
-              ),
+          ),
+          content: Text(
+            'Email verified successfully.',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontFamily: 'OpenSans',
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'OK',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'OpenSans',
-                  ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
                 ),
               ),
-            ],
-          ),
-        );
-        Get.offAllNamed('/');
-      } else {
-        // Show an error message
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              'Error',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
-              ),
             ),
-            content: Text(
-              'An error occurred. Please try again later.',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'OpenSans',
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  'OK',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'OpenSans',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-    } catch (e) {
-      // Handle other errors, such as network errors
-      print('Reset password error: $e');
+          ],
+        ),
+      );
+      Get.offAllNamed('/');
+    } else {
+      // Show an error message if the password reset email failed to send
+      // You can customize this message as needed
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -151,7 +118,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             ),
           ),
           content: Text(
-            'An error occurred. Please try again later.',
+            'Email verification failed. Please try again.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
               fontFamily: 'OpenSans',
@@ -171,11 +138,6 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
           ],
         ),
       );
-    } finally {
-      // Set loading state to false
-      setState(() {
-        isLoading = false;
-      });
     }
   }
 
@@ -183,7 +145,6 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backbutton
         leading: Material(
           color: Colors.transparent,
           child: IconButton(
@@ -204,43 +165,39 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               SvgPicture.asset(
                 'assets/lock.svg',
                 color: Theme.of(context).colorScheme.onTertiary,
                 height: 100,
               ),
               const SizedBox(
-                height: 25,
+                height: 10,
               ),
-              const Text(
-                'Forgot Password/ Reset Password',
+              Text(
+                'An email has been sent to your email address.',
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  fontFamily: 'OpenSans',
                 ),
               ),
               const SizedBox(height: 20),
               MyTextField(
                   controller: emailController,
-                  hintText: 'Email to reset password',
+                  hintText: 'Please verify your email address to continue.',
                   obscureText: false),
-              const SizedBox(height: 10),
-              MyPassword(
-                controller: passwordController,
-                hintText: 'New Password',
-              ),
               const SizedBox(height: 20),
               VerificationCode(
-                controller: passwordResetController,
+                controller: verifyController,
               ),
               const SizedBox(height: 10),
-              MyButton(text: 'Confirm Reset', onTap: resetPassword),
+              MyButton(text: 'Verify Email', onTap: verifyEmail),
             ],
           ),
         ),
+        // Loading widget
         if (isLoading)
-          // dialogue with words saying logging in
           Container(
             color: Colors.black.withOpacity(0.5),
             child: Center(
@@ -254,7 +211,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     height: 10,
                   ),
                   Text(
-                    'resetting...',
+                    'Verifying email...',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
