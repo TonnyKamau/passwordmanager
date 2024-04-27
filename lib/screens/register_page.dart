@@ -106,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       if (success) {
         // Navigate to the home page if registration succeeds
-        Get.offAllNamed('/home');
+        Get.offAllNamed('/email-verification');
       } else {
         // Show an error message if registration failed
         showDialog(
@@ -278,7 +278,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10,
                   ),
                   Text(
-                    'Logging in...',
+                    'Creating account...',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
