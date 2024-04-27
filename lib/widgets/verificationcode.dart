@@ -59,7 +59,7 @@ class _VerificationCodeState extends State<VerificationCode> {
             debugPrint(value);
           },
           beforeTextPaste: (String? text) {
-            return false; // Prevent pasting text into the field
+            return true; // Prevent pasting text into the field
           },
           hintCharacter: '*',
           obscuringCharacter: '*',
