@@ -24,7 +24,7 @@ class _VerificationCodeState extends State<VerificationCode> {
           controller: widget.controller,
           length: 6,
           obscureText:
-              true, // Initially set to true for obscuring with asterisks
+              false, // Initially set to true for obscuring with asterisks
           animationType: AnimationType.fade,
           textStyle: TextStyle(
             fontSize: 20,

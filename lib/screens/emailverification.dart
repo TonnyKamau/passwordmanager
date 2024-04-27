@@ -62,8 +62,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
     // Call the resetPassword function from the AuthService class
     // This function will send a password reset email to the user
     // and return a boolean value based on the success of the operation
-    final isVerified =
-        await AuthService().verifyEmail(email, verificationCode);
+    final isVerified = await AuthService().verifyEmail(email, verificationCode);
     setState(() {
       isLoading = false;
     });
@@ -144,23 +143,6 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Material(
-          color: Colors.transparent,
-          child: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Get.back();
-            },
-            color: Theme.of(context).colorScheme.onTertiary,
-            splashColor: Colors.transparent,
-            highlightColor: Colors
-                .transparent, // Additionally set highlight color to transparent
-            hoverColor:
-                Colors.transparent, // Set hover color to transparent if needed
-          ),
-        ),
-      ),
       body: Stack(children: [
         Center(
           child: Column(
