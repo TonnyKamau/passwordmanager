@@ -38,6 +38,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
+        print(data.toString);
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
@@ -71,18 +72,17 @@ class AuthService {
 
       if (response.statusCode == 201) {
         final data = json.decode(response.body);
+
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
-        await storage.write(key: 'userId', value: data['user']);
+        await storage.write(key: 'userId', value: data['id']);
         // Log in the user after successful sign-up
-        final bool loginSuccess = await login(email, password);
-        return loginSuccess;
+        //final bool loginSuccess = await login(email, password);
+        return true;
       } else if (response.statusCode == 409) {
         // User already exists
         // Show a dialog informing the user
-        const bool emailUsed = true;
-
-        return emailUsed;
+        return true;
       } else {
         // Failed sign-up
         return false;
@@ -93,10 +93,42 @@ class AuthService {
       return false;
     }
   }
+
+  // Verify email address
+  Future<bool> verifyEmail(String email, String verificationCode) async {
+    final String apiKey = dotenv.env['API_KEY']!;
+    final user_id = await storage.read(key: 'userId');
+
+    try {
+      final response = await http.post(
+        Uri.parse('$registerUrl/$user_id/confirm-code/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'verification_code': verificationCode,
+        }),
+      );
+      if (response.statusCode == 200) {
+        // If email verification is successful, log in the user
+        return true;
+      } else {
+        // Failed to verify email
+        return false;
+      }
+    } catch (e) {
+      // Error occurred during email verification
+      print('Error: $e');
+      return false;
+    }
+  }
+
   //forgot password
   Future<bool> forgotPassword(String email) async {
-    final String apiKey = dotenv
-        .env['API_KEY']!; // Get the API key from the .env file using the dotenv package
+    final String apiKey = dotenv.env[
+        'API_KEY']!; // Get the API key from the .env file using the dotenv package
     try {
       final response = await http.post(
         Uri.parse('$forgotPasswordUrl/'),
@@ -121,8 +153,10 @@ class AuthService {
       return false;
     }
   }
+
   //reset password
-  Future<bool> resetPassword(String email, String newPassword, String verificationCode) async {
+  Future<bool> resetPassword(
+      String email, String newPassword, String verificationCode) async {
     final String apiKey = dotenv.env['API_KEY']!;
     try {
       final response = await http.post(

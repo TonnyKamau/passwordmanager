@@ -6,5 +6,5 @@ export 'my_button.dart';
 export 'my_textfield.dart';
 export 'my_password.dart';
 export 'my_appbar.dart';
-
+export 'verificationcode.dart';
 
