@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
       }
     } catch (e) {
       // Handle other errors, such as network errors
-      
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -149,18 +149,21 @@ class _LoginPageState extends State<LoginPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const MyLogo(),
-              const SizedBox(
-                height: 25,
-              ),
-              Text(
-                'Password Manager',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontSize: 16,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.w600,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const MyLogo(),
+                  const SizedBox(width: 10,),
+                  Text(
+                    'Password Manager',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      fontSize: 16,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 25,
