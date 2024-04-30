@@ -205,18 +205,24 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const MyLogo(),
-              const SizedBox(
-                height: 25,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const MyLogo(),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Forgot Password/ Reset Password',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      fontSize: 16,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
-              const Text(
-                'Forgot Password/ Reset Password',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 20),
               MyTextField(
                   controller: emailController,
                   hintText: 'Email to reset password',

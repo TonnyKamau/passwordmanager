@@ -61,9 +61,63 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final success = await authService.login(email, password);
 
-      if (success) {
+      if (success == 200) {
         // Navigate to the home page if login succeeds
         Get.offAllNamed('/home');
+      } else if (success == 400) {
+        //Your account needs to be verified to proceed.
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              'Account not verified',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            content: Text(
+              'Your account needs to be verified to proceed. Please Click very account.',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            actions: [
+              ElevatedButton(
+                style: ButtonStyle(
+                  mouseCursor: MaterialStateProperty.all<MouseCursor>(
+                    MaterialStateMouseCursor.clickable,
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    Theme.of(context).colorScheme.onTertiary,
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
+                    ),
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  Get.toNamed('/email-verification');
+                },
+                child: Text(
+                  'verify account',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
       } else {
         // Show an error message if login failed
         showDialog(
@@ -100,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
       }
     } catch (e) {
       // Handle other errors, such as network errors
-      
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -149,18 +203,23 @@ class _LoginPageState extends State<LoginPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const MyLogo(),
-              const SizedBox(
-                height: 25,
-              ),
-              Text(
-                'Password Manager',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontSize: 16,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.w600,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const MyLogo(),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Password Manager',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      fontSize: 16,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 25,
@@ -198,8 +257,8 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  GestureDetector(
-                    onTap: () {
+                  TextButton(
+                    onPressed: () {
                       Get.toNamed('/register');
                     },
                     child: Text(
@@ -211,12 +270,12 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               //forgot password
-              GestureDetector(
-                onTap: () {
+              TextButton(
+                onPressed: () {
                   Get.toNamed('/forgot-password');
                 },
                 child: Text(

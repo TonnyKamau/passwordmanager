@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/widgets/my_button.dart';
@@ -169,16 +167,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const MyLogo(),
-                const SizedBox(
-                  height: 25,
-                ),
-                const Text(
-                  'Forgot Password/ Reset Password',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const MyLogo(),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Forgot Password/ Reset Password',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 MyTextField(

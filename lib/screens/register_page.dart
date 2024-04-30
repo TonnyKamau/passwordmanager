@@ -195,18 +195,23 @@ class _RegisterPageState extends State<RegisterPage> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const MyLogo(),
-            const SizedBox(
-              height: 25,
-            ),
-            Text(
-              'Lets get started!',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontSize: 16,
-                fontFamily: 'Lato',
-                fontWeight: FontWeight.w600,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const MyLogo(),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Lets get started!',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontSize: 16,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 25,
@@ -250,8 +255,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   width: 10,
                 ),
-                GestureDetector(
-                  onTap: () {
+                TextButton(
+                  onPressed: () {
                     Get.toNamed('/');
                   },
                   child: Text(

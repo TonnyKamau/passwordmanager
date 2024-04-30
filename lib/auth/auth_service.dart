@@ -17,10 +17,12 @@ class AuthService {
       'https://dev-password-manager.up.railway.app/api/v1/accounts/reset-password';
   static const String resetPasswordUrl =
       'https://dev-password-manager.up.railway.app/api/v1/accounts/confirm-password-reset';
+  static const String resendCodeUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/resend-code';
 
   final storage = const FlutterSecureStorage();
 
-  Future<bool> login(String email, String password) async {
+  Future<int?> login(String email, String password) async {
     final String apiKey = dotenv.env['API_KEY']!;
 
     try {
@@ -38,18 +40,26 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-
+        print(data);
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
+        await storage.write(key: 'email', value: data['email']);
 
-        return true;
+        return response.statusCode;
+      } else if (response.statusCode == 400) {
+        // Failed login
+        return response.statusCode;
+      }else if (response.statusCode == 401) {
+        // Failed login
+        return response.statusCode;
       } else {
         // Failed login
-        return false;
+        return response.statusCode;
       }
+
     } catch (e) {
-      return false;
+      return 1;
     }
   }
 
@@ -74,6 +84,7 @@ class AuthService {
         // Save tokens securely
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['id']);
+        await storage.write(key: 'email', value: data['email']);
         // Log in the user after successful sign-up
         //final bool loginSuccess = await login(email, password);
         return true;
@@ -178,6 +189,38 @@ class AuthService {
       }
     } catch (e) {
       return false;
+    }
+  }
+
+// resend code
+  Future<int?> resendCode(String email) async {
+    final String apiKey = dotenv.env[
+        'API_KEY']!; // Get the API key from the .env file using the dotenv package
+    try {
+      final response = await http.post(
+        Uri.parse('$resendCodeUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        return response.statusCode;
+      } else if(response.statusCode == 400) {
+        // Failed to send password reset email
+        return response.statusCode;
+      } else {
+        // Failed to send password reset email
+        return response.statusCode;
+      }
+    } catch (e) {
+      // Error occurred during password reset
+
+      return 1;
     }
   }
 
