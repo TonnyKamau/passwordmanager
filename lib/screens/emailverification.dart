@@ -306,7 +306,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 height: 10,
               ),
               Text(
-                'An email has been sent to your email address.',
+                'An email will be sent to your email address.',
                 style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.onTertiary,

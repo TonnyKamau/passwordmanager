@@ -108,9 +108,75 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       final success = await authService.register(email, password);
 
-      if (success) {
+      if (success == 201) {
         // Navigate to the home page if registration succeeds
         Get.offAllNamed('/email-verification');
+      } else if (success == 400) {
+        // Show an error message if registration failed
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              'Email Already Registered',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            content: Text(
+              'This email is already in use. Please try again.',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      } else if (success == 404) {
+        // Show an error message if registration failed
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              'Not Found',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            content: Text(
+              'Kindly check on your internet connection.',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
       } else {
         // Show an error message if registration failed
         showDialog(
