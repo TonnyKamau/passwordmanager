@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 class MyPassword extends StatefulWidget {
   final TextEditingController controller;
@@ -10,7 +8,6 @@ class MyPassword extends StatefulWidget {
     super.key,
     required this.controller,
     required this.hintText,
-   
   });
 
   @override
@@ -18,20 +15,14 @@ class MyPassword extends StatefulWidget {
 }
 
 class _MyPasswordState extends State<MyPassword> {
-  bool _obscureText =true;
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.4,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15), // Adjust the value as needed
-          border: Border.all(
-            color: Theme.of(context).colorScheme.onTertiary,
-          ),
-        ),
         child: TextFormField(
           cursorColor: Theme.of(context).colorScheme.onTertiary,
           cursorWidth: 1,
@@ -43,13 +34,25 @@ class _MyPasswordState extends State<MyPassword> {
               color: Theme.of(context).colorScheme.primary,
               fontFamily: 'Lato',
             ),
-            border: InputBorder.none, // Hide the default border
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15)),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15)),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20, // Adjust the padding as needed
               vertical: 15, // Adjust the padding as needed
             ),
             suffixIcon: IconButton(
-              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              icon:
+                  Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
               onPressed: () {
                 setState(() {
                   _obscureText = !_obscureText;

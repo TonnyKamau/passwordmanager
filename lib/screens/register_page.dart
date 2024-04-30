@@ -255,8 +255,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   width: 10,
                 ),
-                GestureDetector(
-                  onTap: () {
+                TextButton(
+                  onPressed: () {
                     Get.toNamed('/');
                   },
                   child: Text(
