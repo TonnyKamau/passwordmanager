@@ -110,15 +110,51 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'verify account',
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
+                    color: Theme.of(context).colorScheme.background,
                     fontFamily: 'Lato',
+                    fontWeight: FontWeight.w700
                   ),
                 ),
               )
             ],
           ),
         );
-      } else {
+      } else if (success == 404){
+        // Show an error message if login failed
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              'Not Found',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            content: Text(
+              'Kindly check on your internet connection.',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontFamily: 'Lato',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+
+      }
+      else {
         // Show an error message if login failed
         showDialog(
           context: context,
