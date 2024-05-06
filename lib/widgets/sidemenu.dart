@@ -5,7 +5,6 @@ import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/colors/colors.dart';
 import 'package:passwordmanager/widgets/widgets.dart';
 
-
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});
 
@@ -37,14 +36,14 @@ class _SideMenuState extends State<SideMenu> {
                 children: [
                   CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).colorScheme.onPrimary,
+                      Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
                     'Logging out...',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
                       fontFamily: 'Lato',
                     ),
@@ -95,7 +94,6 @@ class _SideMenuState extends State<SideMenu> {
         );
       }
     } catch (e) {
-      print('Error during logout: $e');
       // Close loading dialog if an error occurs
       Navigator.pop(context);
     } finally {
@@ -120,7 +118,6 @@ class _SideMenuState extends State<SideMenu> {
       ),
       height: double.infinity,
       width: MediaQuery.of(context).size.width * 0.2,
-      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +126,7 @@ class _SideMenuState extends State<SideMenu> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child:  SizedBox(
+                child: SizedBox(
                   width: 50,
                   height: 50,
                   child: MyLogo(),

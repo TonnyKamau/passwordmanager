@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isLoading = false; // Track loading state
 
   Future<void> login() async {
@@ -110,16 +111,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'verify account',
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.background,
-                    fontFamily: 'Lato',
-                    fontWeight: FontWeight.w700
-                  ),
+                      color: Theme.of(context).colorScheme.background,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w700),
                 ),
               )
             ],
           ),
         );
-      } else if (success == 404){
+      } else if (success == 404) {
         // Show an error message if login failed
         showDialog(
           context: context,
@@ -152,9 +152,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         );
-
-      }
-      else {
+      } else {
         // Show an error message if login failed
         showDialog(
           context: context,
@@ -236,95 +234,116 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const MyLogo(),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Password Manager',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onTertiary,
-                      fontSize: 16,
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.w500,
+          Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const MyLogo(),
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              MyTextField(
-                controller: emailController,
-                hintText: 'Email',
-                obscureText: false,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              MyPassword(
-                controller: passwordController,
-                hintText: 'Password',
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              MyButton(text: 'Sign in', onTap: login),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onTertiary,
-                      fontSize: 16,
-                      fontFamily: 'Lato',
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.toNamed('/register');
-                    },
-                    child: Text(
-                      'Sign up',
+                    Text(
+                      'Password Manager',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
                         fontFamily: 'Lato',
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              //forgot password
-              TextButton(
-                onPressed: () {
-                  Get.toNamed('/forgot-password');
-                },
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontSize: 16,
-                    fontFamily: 'Lato',
-                    decoration: TextDecoration.underline,
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '';
+                    }
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(value)) {
+                      return '';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                MyPassword(
+                  controller: passwordController,
+                  hintText: 'Password',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                MyButton(
+                  text: 'Sign in',
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      // Form is valid, proceed with submission
+                      login();
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.toNamed('/register');
+                      },
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onTertiary,
+                          fontSize: 16,
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                //forgot password
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed('/forgot-password');
+                  },
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      fontSize: 16,
+                      fontFamily: 'Lato',
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           // Loading widget
           if (isLoading)

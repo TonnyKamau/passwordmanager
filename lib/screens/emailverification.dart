@@ -315,9 +315,20 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
               ),
               const SizedBox(height: 20),
               MyTextField(
-                  controller: emailController,
-                  hintText: 'Please verify your email address to continue.',
-                  obscureText: false),
+                controller: emailController,
+                hintText: 'Please verify your email address to continue.',
+                obscureText: false,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your email address';
+                  }
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
+                    return '';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 20),
               VerificationCode(
                 controller: verifyController,
