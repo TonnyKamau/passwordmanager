@@ -36,7 +36,7 @@ class _VerificationCodeState extends State<VerificationCode> {
             borderRadius: BorderRadius.circular(8), // Adjust the border radius
             fieldHeight: 50, // Adjust the field height
             fieldWidth: 50, // Adjust the field width
-            activeColor: Theme.of(context).colorScheme.onTertiary,
+            activeColor: Theme.of(context).colorScheme.onPrimary,
             inactiveColor: Theme.of(context).colorScheme.onTertiary,
             selectedColor: Theme.of(context).colorScheme.onTertiary,
             selectedFillColor: Theme.of(context).colorScheme.background,
@@ -44,20 +44,16 @@ class _VerificationCodeState extends State<VerificationCode> {
             inactiveFillColor: Colors.transparent,
             activeFillColor: Theme.of(context).colorScheme.background,
             // Set the inactive fill color to transparent
-            borderWidth: 1,
-            activeBorderWidth: 1,
-            inactiveBorderWidth: 1,
-            disabledBorderWidth: 1,
-            selectedBorderWidth: 1,
+            borderWidth: 2,
+            activeBorderWidth: 2,
+            inactiveBorderWidth: 2,
+            disabledBorderWidth: 2,
+            selectedBorderWidth: 2,
           ),
           animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: true,
-          onCompleted: (v) {
-            print('Completed');
-          },
-          onChanged: (value) {
-            debugPrint(value);
-          },
+          onCompleted: (v) {},
+          onChanged: (value) {},
           beforeTextPaste: (String? text) {
             return true; // Prevent pasting text into the field
           },
