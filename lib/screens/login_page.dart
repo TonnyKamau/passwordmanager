@@ -258,7 +258,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 10,
                 ),
                 MyTextField(
                   controller: emailController,
@@ -304,7 +304,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Don\'t have an account?',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontFamily: 'Lato',
                       ),
                     ),
@@ -336,7 +336,7 @@ class _LoginPageState extends State<LoginPage> {
                     'Forgot Password?',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontFamily: 'Lato',
                       decoration: TextDecoration.underline,
                     ),

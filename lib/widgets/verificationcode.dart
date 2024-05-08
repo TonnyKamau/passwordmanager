@@ -15,7 +15,7 @@ class _VerificationCodeState extends State<VerificationCode> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.43,
+        width: 310,
         child: PinCodeTextField(
           cursorColor: Theme.of(context).colorScheme.onTertiary,
           cursorWidth: 1,
@@ -34,8 +34,8 @@ class _VerificationCodeState extends State<VerificationCode> {
           pinTheme: PinTheme(
             shape: PinCodeFieldShape.box,
             borderRadius: BorderRadius.circular(8), // Adjust the border radius
-            fieldHeight: 50, // Adjust the field height
-            fieldWidth: 50, // Adjust the field width
+            fieldHeight: 40, // Adjust the field height
+            fieldWidth: 40, // Adjust the field width
             activeColor: Theme.of(context).colorScheme.onPrimary,
             inactiveColor: Theme.of(context).colorScheme.onTertiary,
             selectedColor: Theme.of(context).colorScheme.onTertiary,

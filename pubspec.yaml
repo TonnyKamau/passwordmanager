@@ -46,6 +46,7 @@ dependencies:
   pin_code_fields: ^8.0.1
   flutter_launcher_icons: ^0.13.1
   introduction_screen: ^3.1.14
+  lucide_icons: ^0.257.0
     
 flutter_launcher_icons:
   windows:

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class MyPassword extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final String Function(String?)? validator;
 
   const MyPassword({
     super.key,
     required this.controller,
     required this.hintText,
+    this.validator,
   });
 
   @override
@@ -22,17 +24,20 @@ class _MyPasswordState extends State<MyPassword> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.4,
+        width: 300,
         child: TextFormField(
           cursorColor: Theme.of(context).colorScheme.onTertiary,
+          validator: widget.validator,
           cursorWidth: 1,
           controller: widget.controller,
           obscureText: _obscureText,
+          onEditingComplete: () => FocusScope.of(context).nextFocus(),
           decoration: InputDecoration(
             hintText: widget.hintText,
             hintStyle: TextStyle(
               color: Theme.of(context).colorScheme.primary,
               fontFamily: 'Lato',
+              fontSize: 14,
             ),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(

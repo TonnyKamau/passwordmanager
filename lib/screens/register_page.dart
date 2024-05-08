@@ -280,7 +280,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ],
             ),
             const SizedBox(
-              height: 25,
+              height: 10,
             ),
             MyTextField(
                 controller: emailController,
@@ -299,13 +299,19 @@ class _RegisterPageState extends State<RegisterPage> {
             MyPassword(
               controller: confirmPasswordController,
               hintText: 'Confirm Password',
+              validator: (value) {
+                if (value != passwordController.text) {
+                  return 'Passwords do not match';
+                }
+                return '';
+              },
             ),
             const SizedBox(
               height: 15,
             ),
             MyButton(text: 'Sign up', onTap: register),
             const SizedBox(
-              height: 10,
+              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -314,7 +320,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   'Already have an account?',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontFamily: 'Lato',
                   ),
                 ),
