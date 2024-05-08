@@ -5,11 +5,14 @@ class MyTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final String? Function(String?)? validator;
-  const MyTextField(
-      {super.key,
-      required this.controller,
-      required this.hintText,
-      required this.obscureText, this.validator});
+
+  const MyTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.obscureText,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +21,20 @@ class MyTextField extends StatelessWidget {
         horizontal: 25,
       ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.4,
+        width: 300,
         child: TextFormField(
           validator: validator,
           cursorColor: Theme.of(context).colorScheme.onTertiary,
           cursorWidth: 1,
           controller: controller,
           obscureText: obscureText,
+          onEditingComplete: () => FocusScope.of(context).nextFocus(),
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
               color: Theme.of(context).colorScheme.primary,
               fontFamily: 'Lato',
+              fontSize: 14,
             ),
             errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
@@ -37,8 +42,8 @@ class MyTextField extends StatelessWidget {
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(15)),
-                focusedErrorBorder:   OutlineInputBorder(
-                  borderSide: const BorderSide(
+            focusedErrorBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
                   color: Colors.redAccent,
                   width: 2,
                 ),

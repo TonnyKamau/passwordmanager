@@ -175,17 +175,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       width: 10,
                     ),
                     Text(
-                      'Forgot Password/ Reset Password',
+                      'Forgot Password/Reset Password',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 MyTextField(
                     controller: emailController,
                     hintText: 'Email to reset password',

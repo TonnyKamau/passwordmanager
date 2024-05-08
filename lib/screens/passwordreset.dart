@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:get/get.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
@@ -12,17 +13,19 @@ class PasswordResetPage extends StatefulWidget {
 }
 
 class _PasswordResetPageState extends State<PasswordResetPage> {
-  final TextEditingController emailController = TextEditingController();
+ 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordResetController = TextEditingController();
+    final storage = const FlutterSecureStorage();
+ 
   bool isLoading = false;
   bool isResending = false;
   Future resetPassword() async {
-    final String email = emailController.text.trim();
+    final String? email =  await storage.read(key: 'email');
     final String newPassword = passwordController.text.trim();
     final String verificationCode = passwordResetController.text.trim();
 
-    if (email.isEmpty || newPassword.isEmpty || verificationCode.isEmpty) {
+    if (newPassword.isEmpty || verificationCode.isEmpty) {
       // Show an error message if email or password is empty
       // You can customize this message as needed
       showDialog(
@@ -66,7 +69,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
     final authService = AuthService();
     try {
       final bool success =
-          await authService.resetPassword(email, newPassword, verificationCode);
+          await authService.resetPassword(email!, newPassword, verificationCode);
 
       if (success) {
         // Show a success message
@@ -181,8 +184,9 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   }
 
   Future<void> resendResetCode() async {
-    final String email = emailController.text.trim();
-    if (email.isEmpty) {
+    final String? email = await storage.read(key: 'email');
+   
+    if (email!.isEmpty) {
       // Show an error message if email or password is empty
       // You can customize this message as needed
       showDialog(
@@ -227,7 +231,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
     try {
       final success = await authService.resendResetCode(email);
 
-      if (success==201) {
+      if (success == 201) {
         // Show a success message
         showDialog(
           context: context,
@@ -341,24 +345,6 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //backbutton
-        leading: Material(
-          color: Colors.transparent,
-          child: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Get.back();
-            },
-            color: Theme.of(context).colorScheme.onTertiary,
-            splashColor: Colors.transparent,
-            highlightColor: Colors
-                .transparent, // Additionally set highlight color to transparent
-            hoverColor:
-                Colors.transparent, // Set hover color to transparent if needed
-          ),
-        ),
-      ),
       body: Stack(children: [
         Center(
           child: Column(
@@ -375,18 +361,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     'Forgot Password/ Reset Password',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              MyTextField(
-                  controller: emailController,
-                  hintText: 'Email to reset password',
-                  obscureText: false),
+              const SizedBox(height: 10),
               const SizedBox(height: 10),
               MyPassword(
                 controller: passwordController,
@@ -442,7 +424,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               ),
             ),
           ),
-          if(isResending)
+        if (isResending)
           Container(
             color: Colors.black.withOpacity(0.5),
             child: Center(

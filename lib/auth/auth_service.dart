@@ -39,7 +39,7 @@ class AuthService {
           'password': password,
         }),
       );
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
 
@@ -147,6 +147,7 @@ class AuthService {
   Future<bool> forgotPassword(String email) async {
     final String apiKey = dotenv.env[
         'API_KEY']!; // Get the API key from the .env file using the dotenv package
+    await storage.write(key: 'email', value: email);
     try {
       final response = await http.post(
         Uri.parse('$forgotPasswordUrl/'),
@@ -177,7 +178,7 @@ class AuthService {
       String email, String newPassword, String verificationCode) async {
     final String apiKey = dotenv.env['API_KEY']!;
     //save the email in the secure storage
-    await storage.write(key: 'email', value: email);
+
     try {
       final response = await http.post(
         Uri.parse('$resetPasswordUrl/'),
