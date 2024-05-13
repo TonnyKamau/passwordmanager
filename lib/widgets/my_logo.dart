@@ -8,7 +8,7 @@ class MyLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       'assets/fraud.svg',
-      height: 100,
+      height: 80,
     );
   }
 }

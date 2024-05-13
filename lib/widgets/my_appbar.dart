@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:passwordmanager/colors/colors.dart';
 import 'package:passwordmanager/themes/theme_provider.dart';
 
@@ -9,7 +10,8 @@ import 'package:provider/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController controller = TextEditingController();
-  MyAppBar({super.key});
+  final String title;
+  MyAppBar({super.key, required this.title});
   @override
   Size get preferredSize => const Size.fromHeight(100);
 
@@ -18,13 +20,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(
+        Padding(
+          padding: const EdgeInsets.symmetric(
             horizontal: 20,
           ),
           child: Text(
-            'Main',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               fontFamily: 'Lato',
               color: sideMenuSelectedIconColor,
               fontSize: 24,
@@ -37,53 +39,83 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: <Widget>[
               // Add button with an icon
-              Container(
-                decoration: BoxDecoration(
-                  color: sideMenuIconColor,
-                  borderRadius: BorderRadius.circular(10),
+              ElevatedButton.icon(
+                onPressed: () {
+                  // open dialog to add password
+                },
+                icon: Icon(
+                  LucideIcons.plus,
+                  color: Theme.of(context).colorScheme.onTertiary,
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/plus.svg',
-                      width: 20,
-                      height: 20,
-                      color: Theme.of(context).colorScheme.onTertiary,
+                label: Text(
+                  'Add',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
                     ),
-                    Text(
-                      'ADD',
-                      style: TextStyle(
-                        fontFamily: 'Lato',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.onTertiary,
-                      ),
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    SvgPicture.asset(
-                      'assets/down-arrow.svg',
-                      width: 20,
-                      height: 20,
-                      color: Theme.of(context).colorScheme.onTertiary,
+                  ),
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+              //add file button
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Add functionality here to show the dialog to add password
+                },
+                icon: Icon(
+                  LucideIcons.folderPlus,
+                  color: Theme.of(context).colorScheme.onTertiary,
+                ),
+                label: Text(
+                  '',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
                     ),
-                  ],
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.05),
               // Search bar
 
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(15), // Adjust the value as needed
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.onTertiary,
-                    ),
-                  ),
-                  child: TextField(
+                child: SizedBox(
+                  height: 40,
+                  child: TextFormField(
                     cursorColor: Theme.of(context).colorScheme.onTertiary,
                     cursorWidth: 1,
                     controller: controller,
@@ -94,7 +126,21 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                         color: Theme.of(context).colorScheme.primary,
                         fontFamily: 'Lato',
                       ),
-                      border: InputBorder.none, // Hide the default border
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      prefixIcon: Icon(LucideIcons.search,
+                          color: Theme.of(context).colorScheme.onTertiary),
+                      // Hide the default border
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 15, // Adjust the padding as needed
                         vertical: 5, // Adjust the padding as needed
@@ -108,7 +154,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               CupertinoSwitch(
                   activeColor: Theme.of(context).colorScheme.inversePrimary,
                   trackColor: Theme.of(context).colorScheme.onTertiary,
-                  thumbColor: const Color(0xFFFF971D),
+                  thumbColor: Theme.of(context).colorScheme.onPrimary,
                   value: Provider.of<ThemeProvider>(context, listen: false)
                       .isDarkMode,
                   onChanged: (value) =>
@@ -120,7 +166,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               // Profile icon
               CircleAvatar(
                 radius: 20,
-                backgroundColor: sideMenuIconColor,
+                backgroundColor: Theme.of(context).colorScheme.onPrimary,
                 child: SvgPicture.asset(
                   'assets/user-shield-alt-1.svg',
                   width: 20,

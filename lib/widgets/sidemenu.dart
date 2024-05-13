@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
 import 'package:passwordmanager/colors/colors.dart';
+import 'package:passwordmanager/models/menu_model.dart';
 import 'package:passwordmanager/widgets/widgets.dart';
 
-
 class SideMenu extends StatefulWidget {
+  
   const SideMenu({super.key});
 
   @override
@@ -15,6 +17,8 @@ class SideMenu extends StatefulWidget {
 
 class _SideMenuState extends State<SideMenu> {
   bool isLoading = false;
+  int selectedIndex = 0;
+  
 
   Future<void> logout() async {
     try {
@@ -37,14 +41,14 @@ class _SideMenuState extends State<SideMenu> {
                 children: [
                   CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).colorScheme.onPrimary,
+                      Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
                     'Logging out...',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
                       fontFamily: 'Lato',
                     ),
@@ -95,7 +99,6 @@ class _SideMenuState extends State<SideMenu> {
         );
       }
     } catch (e) {
-      print('Error during logout: $e');
       // Close loading dialog if an error occurs
       Navigator.pop(context);
     } finally {
@@ -108,6 +111,8 @@ class _SideMenuState extends State<SideMenu> {
 
   @override
   Widget build(BuildContext context) {
+    final menuItems = MenuModel.menuItems;
+
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.inversePrimary,
@@ -120,42 +125,116 @@ class _SideMenuState extends State<SideMenu> {
       ),
       height: double.infinity,
       width: MediaQuery.of(context).size.width * 0.2,
-      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child:  SizedBox(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            child: Row(
+              children: [
+                const SizedBox(
                   width: 50,
                   height: 50,
                   child: MyLogo(),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'SecurePass',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontSize: 16,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
+          // list view builder for menu items
+          Expanded(
+            child: ListView.builder(
+              itemCount: menuItems.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: selectedIndex == index
+                          ? Theme.of(context).colorScheme.onTertiary
+                          : Theme.of(context).colorScheme.inversePrimary,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          // Set the selected index
+                          selectedIndex = index;
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 5),
+                            child: Icon(
+                              menuItems[index].icon,
+                              color: selectedIndex == index
+                                  ? Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary // Change color if selected
+                                  : Theme.of(context).colorScheme.onTertiary,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          // Menu items
+                          Text(
+                            menuItems[index].title,
+                            style: TextStyle(
+                              color: selectedIndex == index
+                                  ? Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary // Change color if selected
+                                  : Theme.of(context).colorScheme.onTertiary,
+                              fontSize: 16,
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
           // Logout button
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GestureDetector(
               onTap: logout,
               child: Row(
                 children: [
-                  SvgPicture.asset(
-                    'assets/logout.svg',
-                    color: sideMenuIconColor,
+                  Icon(
+                    LucideIcons.logOut,
+                    color: Theme.of(context).colorScheme.onTertiary,
                   ),
                   const SizedBox(width: 10),
-                  const Text(
+                  // Menu items
+
+                  Text(
                     'Log out',
                     style: TextStyle(
-                      color: sideMenuIconColor,
+                      color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
                       fontFamily: 'Lato',
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],

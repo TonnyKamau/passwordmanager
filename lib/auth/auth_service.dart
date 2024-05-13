@@ -18,7 +18,12 @@ class AuthService {
   static const String resetPasswordUrl =
       'https://dev-password-manager.up.railway.app/api/v1/accounts/confirm-password-reset';
   static const String resendCodeUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/resend-code';
+      'https://dev-password-manager.up.railway.app/api/v1/resend-verification-code';
+  static const String resendResetCodeUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/resend-reset-code';
+
+  static const String createPasswordUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/dashboard/passwords';
 
   final storage = const FlutterSecureStorage();
 
@@ -45,6 +50,8 @@ class AuthService {
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
         await storage.write(key: 'email', value: data['email']);
+        await storage.write(key: 'refreshToken', value: data['refreshToken']);
+        // after successful login maintain the login user and the refresh token for future use by the user
 
         return response.statusCode;
       } else if (response.statusCode == 400) {
@@ -87,6 +94,7 @@ class AuthService {
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['id']);
         await storage.write(key: 'email', value: data['email']);
+
         // Log in the user after successful sign-up
         //final bool loginSuccess = await login(email, password);
         return response.statusCode;
@@ -125,6 +133,7 @@ class AuthService {
           'verification_code': verificationCode,
         }),
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         // If email verification is successful, log in the user
         return true;
@@ -143,6 +152,7 @@ class AuthService {
   Future<bool> forgotPassword(String email) async {
     final String apiKey = dotenv.env[
         'API_KEY']!; // Get the API key from the .env file using the dotenv package
+    await storage.write(key: 'email', value: email);
     try {
       final response = await http.post(
         Uri.parse('$forgotPasswordUrl/'),
@@ -172,6 +182,8 @@ class AuthService {
   Future<bool> resetPassword(
       String email, String newPassword, String verificationCode) async {
     final String apiKey = dotenv.env['API_KEY']!;
+    //save the email in the secure storage
+
     try {
       final response = await http.post(
         Uri.parse('$resetPasswordUrl/'),
@@ -194,6 +206,37 @@ class AuthService {
       }
     } catch (e) {
       return false;
+    }
+  }
+
+// resend reset password code
+  Future<int> resendResetCode(String email) async {
+    final String apiKey = dotenv.env['API_KEY']!;
+    try {
+      final response = await http.post(
+        Uri.parse('$resendResetCodeUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        return response.statusCode;
+      } else if (response.statusCode == 400) {
+        // Failed to send password reset email
+        return response.statusCode;
+      } else {
+        // Failed to send password reset email
+        return response.statusCode;
+      }
+    } catch (e) {
+      // Error occurred during password reset
+
+      return 1;
     }
   }
 
@@ -224,6 +267,45 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during password reset
+
+      return 1;
+    }
+  }
+
+// create password
+  Future<int?> createPassword(String applicationName, String siteUrl,
+      String emailUsed, String usernameUsed, String password) async {
+    final String apiKey = dotenv.env[
+        'API_KEY']!; // Get the API key from the .env file using the dotenv package
+    final userId = await storage.read(key: 'userId');
+    try {
+      final response = await http.post(
+        Uri.parse('$createPasswordUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'user': userId!,
+          'application_name': applicationName,
+          'site_url': siteUrl,
+          'email_used': emailUsed,
+          'username_used': usernameUsed,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        return response.statusCode;
+      } else if (response.statusCode == 400) {
+        // Failed to create password
+        return response.statusCode;
+      } else {
+        // Failed to create password
+        return response.statusCode;
+      }
+    } catch (e) {
+      // Error occurred during password creation
 
       return 1;
     }

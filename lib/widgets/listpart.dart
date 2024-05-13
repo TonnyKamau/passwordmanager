@@ -17,7 +17,6 @@ class ListPart extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.inversePrimary,
-             
             ),
             child: CustomScrollView(
               slivers: <Widget>[
@@ -58,16 +57,9 @@ class ListPart extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            subtitle: Text(
-                              'Subtitle $index',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
                             leading: CircleAvatar(
-                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               child: SvgPicture.asset(
                                 'assets/user-shield-alt-1.svg',
                                 width: 20,
@@ -77,7 +69,7 @@ class ListPart extends StatelessWidget {
                             ),
                             trailing: Text(
                               '$index',
-                              style:  TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'Lato',
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context).colorScheme.primary,
@@ -149,7 +141,8 @@ class ListPart extends StatelessWidget {
                               ),
                             ),
                             leading: CircleAvatar(
-                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               child: SvgPicture.asset(
                                 'assets/user-shield-alt-1.svg',
                                 width: 20,
@@ -159,7 +152,7 @@ class ListPart extends StatelessWidget {
                             ),
                             trailing: Text(
                               '$index',
-                              style:  TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'Lato',
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context).colorScheme.primary,
