@@ -10,7 +10,8 @@ import 'package:provider/provider.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextEditingController controller = TextEditingController();
-  MyAppBar({super.key});
+  final String title;
+  MyAppBar({super.key, required this.title});
   @override
   Size get preferredSize => const Size.fromHeight(100);
 
@@ -19,13 +20,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(
+        Padding(
+          padding: const EdgeInsets.symmetric(
             horizontal: 20,
           ),
           child: Text(
-            'Main',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               fontFamily: 'Lato',
               color: sideMenuSelectedIconColor,
               fontSize: 24,
@@ -40,8 +41,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               // Add button with an icon
               ElevatedButton.icon(
                 onPressed: () {
-                // Add functionality here to show the dialog to add password
-                  
+                  // open dialog to add password
                 },
                 icon: Icon(
                   LucideIcons.plus,
@@ -68,7 +68,43 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+              //add file button
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Add functionality here to show the dialog to add password
+                },
+                icon: Icon(
+                  LucideIcons.folderPlus,
+                  color: Theme.of(context).colorScheme.onTertiary,
+                ),
+                label: Text(
+                  '',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontFamily: 'Lato',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    const EdgeInsets.symmetric(
+                      horizontal: 25,
+                      vertical: 15,
+                    ),
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ),
@@ -130,7 +166,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               // Profile icon
               CircleAvatar(
                 radius: 20,
-                backgroundColor: sideMenuIconColor,
+                backgroundColor: Theme.of(context).colorScheme.onPrimary,
                 child: SvgPicture.asset(
                   'assets/user-shield-alt-1.svg',
                   width: 20,

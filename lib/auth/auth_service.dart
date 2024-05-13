@@ -22,6 +22,9 @@ class AuthService {
   static const String resendResetCodeUrl =
       'https://dev-password-manager.up.railway.app/api/v1/resend-reset-code';
 
+  static const String createPasswordUrl =
+      'https://dev-password-manager.up.railway.app/api/v1/dashboard/passwords';
+
   final storage = const FlutterSecureStorage();
 
   Future<int?> login(String email, String password) async {
@@ -47,6 +50,8 @@ class AuthService {
         await storage.write(key: 'token', value: data['token']);
         await storage.write(key: 'userId', value: data['user']);
         await storage.write(key: 'email', value: data['email']);
+        await storage.write(key: 'refreshToken', value: data['refreshToken']);
+        // after successful login maintain the login user and the refresh token for future use by the user
 
         return response.statusCode;
       } else if (response.statusCode == 400) {
@@ -262,6 +267,45 @@ class AuthService {
       }
     } catch (e) {
       // Error occurred during password reset
+
+      return 1;
+    }
+  }
+
+// create password
+  Future<int?> createPassword(String applicationName, String siteUrl,
+      String emailUsed, String usernameUsed, String password) async {
+    final String apiKey = dotenv.env[
+        'API_KEY']!; // Get the API key from the .env file using the dotenv package
+    final userId = await storage.read(key: 'userId');
+    try {
+      final response = await http.post(
+        Uri.parse('$createPasswordUrl/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': apiKey,
+        },
+        body: jsonEncode(<String, String>{
+          'user': userId!,
+          'application_name': applicationName,
+          'site_url': siteUrl,
+          'email_used': emailUsed,
+          'username_used': usernameUsed,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        return response.statusCode;
+      } else if (response.statusCode == 400) {
+        // Failed to create password
+        return response.statusCode;
+      } else {
+        // Failed to create password
+        return response.statusCode;
+      }
+    } catch (e) {
+      // Error occurred during password creation
 
       return 1;
     }

@@ -14,7 +14,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: MyAppBar(),
+        appBar: MyAppBar(
+          title: 'Main',
+        ),
         body: const Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
