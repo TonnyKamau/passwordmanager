@@ -32,14 +32,14 @@ class _LoginPageState extends State<LoginPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter both email and password.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -74,14 +74,14 @@ class _LoginPageState extends State<LoginPage> {
               'Account not verified',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Your account needs to be verified to proceed. Please Click very account.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                   'verify account',
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.surface,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w700),
                 ),
               )
@@ -128,14 +128,14 @@ class _LoginPageState extends State<LoginPage> {
               'Not Found',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Kindly check on your internet connection.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -161,14 +161,14 @@ class _LoginPageState extends State<LoginPage> {
               'Login Failed',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Invalid email or password. Please try again.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -178,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -196,14 +196,14 @@ class _LoginPageState extends State<LoginPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -251,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -305,7 +305,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 14,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                       ),
                     ),
                     const SizedBox(
@@ -320,7 +320,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onTertiary,
                           fontSize: 16,
-                          fontFamily: 'Lato',
+                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -337,7 +337,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 14,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                       decoration: TextDecoration.underline,
                     ),
                   ),
@@ -365,7 +365,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                       ),
                     ),
                   ],
