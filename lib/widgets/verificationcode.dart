@@ -39,10 +39,10 @@ class _VerificationCodeState extends State<VerificationCode> {
             activeColor: Theme.of(context).colorScheme.onPrimary,
             inactiveColor: Theme.of(context).colorScheme.onTertiary,
             selectedColor: Theme.of(context).colorScheme.onTertiary,
-            selectedFillColor: Theme.of(context).colorScheme.background,
+            selectedFillColor: Theme.of(context).colorScheme.surface,
             disabledColor: Theme.of(context).colorScheme.primary,
             inactiveFillColor: Colors.transparent,
-            activeFillColor: Theme.of(context).colorScheme.background,
+            activeFillColor: Theme.of(context).colorScheme.surface,
             // Set the inactive fill color to transparent
             borderWidth: 2,
             activeBorderWidth: 2,

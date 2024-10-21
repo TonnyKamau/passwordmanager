@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +35,7 @@ class _PasswordManagerOnboardingScreenState
 
   Widget _buildOnboardingScreen() {
     return IntroductionScreen(
-     pages: [
+      pages: [
         PageViewModel(
           title: "Welcome to SecurePass",
           body: "Manage your passwords securely with SecurePass.",
@@ -83,6 +82,6 @@ class _PasswordManagerOnboardingScreenState
   Widget _redirect() {
     // Redirect to home screen using Get package
     Get.offAllNamed('/');
-    return Scaffold(); // Placeholder widget
+    return const Scaffold(); // Placeholder widget
   }
 }

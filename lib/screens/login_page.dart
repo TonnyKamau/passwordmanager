@@ -87,19 +87,19 @@ class _LoginPageState extends State<LoginPage> {
             actions: [
               ElevatedButton(
                 style: ButtonStyle(
-                  mouseCursor: MaterialStateProperty.all<MouseCursor>(
-                    MaterialStateMouseCursor.clickable,
+                  mouseCursor: WidgetStateProperty.all<MouseCursor>(
+                    WidgetStateMouseCursor.clickable,
                   ),
-                  backgroundColor: MaterialStateProperty.all<Color>(
+                  backgroundColor: WidgetStateProperty.all<Color>(
                     Theme.of(context).colorScheme.onTertiary,
                   ),
-                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.symmetric(
                       horizontal: 25,
                       vertical: 15,
                     ),
                   ),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'verify account',
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w700),
                 ),
@@ -230,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Stack(
         alignment: Alignment.center,
         children: [

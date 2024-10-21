@@ -12,7 +12,7 @@ class PasswordsModel extends Equatable {
   final String createdAt;
   final String updatedAt;
 
-  PasswordsModel({
+  const PasswordsModel({
     required this.id,
     required this.title,
     required this.username,

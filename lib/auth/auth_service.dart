@@ -378,7 +378,7 @@ class AuthService {
 
     // Extract the expiration time ('exp' claim) from the payload
     dynamic exp = payloadJson['exp'];
-    if (exp == null || !(exp is num)) {
+    if (exp == null || exp is! num) {
       throw const FormatException(
           'Invalid JWT token: missing or invalid "exp" claim');
     }
@@ -397,7 +397,7 @@ class AuthService {
     if (token != null && !isTokenExpired(token)) {
       return token;
     } else if (refreshToken != null) {
-      final newToken = await refreshToken;
+      final newToken = refreshToken;
       return newToken;
     } else {
       return null; // No valid token or refresh token available

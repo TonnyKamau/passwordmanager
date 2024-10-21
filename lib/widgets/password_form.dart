@@ -19,32 +19,32 @@ class PasswordForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 labelText: 'Application Name',
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 labelText: 'Site URL',
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 labelText: 'Email Used',
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 labelText: 'Username Used',
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 labelText: 'Password',
               ),
             ),

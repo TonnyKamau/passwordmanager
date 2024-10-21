@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:passwordmanager/auth/auth_service.dart';
-import 'package:passwordmanager/colors/colors.dart';
 import 'package:passwordmanager/models/menu_model.dart';
 import 'package:passwordmanager/widgets/widgets.dart';
 
 class SideMenu extends StatefulWidget {
-  
   const SideMenu({super.key});
 
   @override
@@ -18,7 +15,6 @@ class SideMenu extends StatefulWidget {
 class _SideMenuState extends State<SideMenu> {
   bool isLoading = false;
   int selectedIndex = 0;
-  
 
   Future<void> logout() async {
     try {
