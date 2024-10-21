@@ -20,8 +20,12 @@ class ThemeProvider with ChangeNotifier {
   // Load saved theme mode from shared preferences
   Future<void> _loadThemeMode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isDark = prefs.getBool(_themeModeKey) ?? false;
-    _themeData = isDark ? darkMode : lightMode;
+    bool? isDark = prefs.getBool(_themeModeKey);
+    if (isDark != null && isDark) {
+      _themeData = darkMode;
+    }
+
+    // Notify listeners after loading the theme mode
     notifyListeners();
   }
 
@@ -42,8 +46,14 @@ class ThemeProvider with ChangeNotifier {
 
   // Toggle theme between light and dark modes
   void toggleTheme() {
-    _themeData = _themeData == lightMode ? darkMode : lightMode;
+    if (_themeData == lightMode) {
+      _themeData = darkMode;
+    } else {
+      _themeData = lightMode;
+    }
+    // Save theme mode to shared preferences
     _saveThemeMode(_themeData == darkMode);
+    // Notify listeners after updating the theme
     notifyListeners();
   }
 }
