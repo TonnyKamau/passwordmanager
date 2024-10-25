@@ -34,14 +34,14 @@ class _RegisterPageState extends State<RegisterPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter all fields.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -71,14 +71,14 @@ class _RegisterPageState extends State<RegisterPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Passwords do not match.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -120,14 +120,14 @@ class _RegisterPageState extends State<RegisterPage> {
               'Email Already Registered',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'This email is already in use. Please try again.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -137,7 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -153,14 +153,14 @@ class _RegisterPageState extends State<RegisterPage> {
               'Not Found',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Kindly check on your internet connection.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -170,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -186,14 +186,14 @@ class _RegisterPageState extends State<RegisterPage> {
               'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Registration failed. Please try again.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -221,14 +221,14 @@ class _RegisterPageState extends State<RegisterPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'An error occurred. Please try again.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -238,7 +238,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -273,7 +273,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 16,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -321,7 +321,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 14,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
                 const SizedBox(
@@ -336,7 +336,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -365,7 +365,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                     ),
                   ),
                 ],

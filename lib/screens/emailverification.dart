@@ -30,14 +30,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter all fields.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -47,7 +47,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -76,14 +76,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Success',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Email verified successfully.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -95,7 +95,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -113,14 +113,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Email verification failed. Please try again.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -130,7 +130,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -153,14 +153,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter your email address.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -170,7 +170,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -196,14 +196,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Success',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Verification code sent successfully.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -215,7 +215,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -232,14 +232,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Email Not registered',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please try with a registered email.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -249,7 +249,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -266,14 +266,14 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Failed to send verification code. Please try again.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -283,7 +283,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -310,7 +310,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
               const SizedBox(height: 20),
@@ -364,7 +364,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                     ),
                   ),
                 ],
@@ -390,7 +390,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                     ),
                   ),
                 ],

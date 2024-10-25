@@ -30,14 +30,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter email',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -73,14 +73,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'An error occurred. Please try again later.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -90,7 +90,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -108,14 +108,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -125,7 +125,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -179,7 +179,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 14,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -214,7 +214,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
                         fontSize: 16,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                       ),
                     ),
                   ],

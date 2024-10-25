@@ -36,7 +36,7 @@ class _MyPasswordState extends State<MyPassword> {
             hintText: widget.hintText,
             hintStyle: TextStyle(
               color: Theme.of(context).colorScheme.primary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
               fontSize: 14,
             ),
             focusedBorder: OutlineInputBorder(

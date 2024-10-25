@@ -29,7 +29,7 @@ class _VerificationCodeState extends State<VerificationCode> {
           textStyle: TextStyle(
             fontSize: 20,
             color: Theme.of(context).colorScheme.onTertiary,
-            fontFamily: 'Lato',
+            fontFamily: 'Poppins',
           ),
           pinTheme: PinTheme(
             shape: PinCodeFieldShape.box,

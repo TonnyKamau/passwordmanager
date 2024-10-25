@@ -32,7 +32,7 @@ class MyButton extends StatelessWidget {
         text,
         style: TextStyle(
           color: Theme.of(context).colorScheme.surface,
-          fontFamily: 'Lato',
+          fontFamily: 'Poppins',
           fontSize: 16,
           fontWeight: FontWeight.w700,
         ),

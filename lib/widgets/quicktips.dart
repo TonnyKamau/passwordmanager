@@ -20,12 +20,12 @@ class QuickTips extends StatelessWidget {
               thickness: 1,
             ),
           ),
-          SizedBox(width: 10),  
+          SizedBox(width: 10),
           Text(
             'Quick Tips',
             style: TextStyle(
               color: sideMenuIconColor,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),

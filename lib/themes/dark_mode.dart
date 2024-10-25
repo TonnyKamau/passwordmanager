@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 ThemeData darkMode = ThemeData(
+  fontFamily: 'Poppins',
+  useMaterial3: true,
   colorScheme: const ColorScheme.dark(
     surface: Color(0xFF0F1113),
     primary: Color.fromARGB(255, 122, 122, 122),

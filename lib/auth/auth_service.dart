@@ -5,27 +5,22 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  static const String loginUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/accounts/login';
-  static const String refreshTokenUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/token/refresh';
-  static const String logoutUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/accounts/logout';
-  static const String registerUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/accounts/user';
-  static const String forgotPasswordUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/accounts/reset-password';
-  static const String resetPasswordUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/accounts/confirm-password-reset';
-  static const String resendCodeUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/resend-verification-code';
-  static const String resendResetCodeUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/resend-reset-code';
+  static final String baseUrl = dotenv.env['API_URL']!;
+  static final String loginUrl = '$baseUrl/api/v1/accounts/login';
+  static final String refreshTokenUrl = '$baseUrl/api/v1/token/refresh';
+  static final String logoutUrl = '$baseUrl/api/v1/accounts/logout';
+  static final String registerUrl = '$baseUrl/api/v1/accounts/user';
+  static final String forgotPasswordUrl =
+      '$baseUrl/api/v1/accounts/reset-password';
+  static final String resetPasswordUrl =
+      '$baseUrl/api/v1/accounts/confirm-password-reset';
+  static final String resendCodeUrl =
+      '$baseUrl/api/v1/resend-verification-code';
+  static final String resendResetCodeUrl = '$baseUrl/api/v1/resend-reset-code';
 
-  static const String createPasswordUrl =
-      'https://dev-password-manager.up.railway.app/api/v1/dashboard/passwords';
+  static final String createPasswordUrl = '$baseUrl/api/v1/dashboard/passwords';
 
-  final storage = const FlutterSecureStorage();
+  final storage = FlutterSecureStorage();
 
   Future<int?> login(String email, String password) async {
     final String apiKey = dotenv.env['API_KEY']!;
@@ -294,7 +289,7 @@ class AuthService {
           'password': password,
         }),
       );
-
+      print(response.statusCode);
       if (response.statusCode == 201) {
         return response.statusCode;
       } else if (response.statusCode == 400) {

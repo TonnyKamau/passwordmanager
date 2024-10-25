@@ -27,7 +27,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Text(
             title,
             style: const TextStyle(
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
               color: sideMenuSelectedIconColor,
               fontSize: 24,
               fontWeight: FontWeight.w500,
@@ -51,7 +51,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   'Add',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
@@ -87,7 +87,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   '',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
@@ -124,7 +124,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                       hintText: 'Search',
                       hintStyle: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(

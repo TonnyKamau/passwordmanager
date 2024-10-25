@@ -13,15 +13,14 @@ class PasswordResetPage extends StatefulWidget {
 }
 
 class _PasswordResetPageState extends State<PasswordResetPage> {
- 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordResetController = TextEditingController();
-    final storage = const FlutterSecureStorage();
- 
+  final storage = const FlutterSecureStorage();
+
   bool isLoading = false;
   bool isResending = false;
   Future resetPassword() async {
-    final String? email =  await storage.read(key: 'email');
+    final String? email = await storage.read(key: 'email');
     final String newPassword = passwordController.text.trim();
     final String verificationCode = passwordResetController.text.trim();
 
@@ -35,14 +34,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter all fields.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -52,7 +51,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -68,8 +67,8 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
     // Call the login API
     final authService = AuthService();
     try {
-      final bool success =
-          await authService.resetPassword(email!, newPassword, verificationCode);
+      final bool success = await authService.resetPassword(
+          email!, newPassword, verificationCode);
 
       if (success) {
         // Show a success message
@@ -80,14 +79,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               'Success',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Password reset successful.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -99,7 +98,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -116,14 +115,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'An error occurred. Please try again later.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -133,7 +132,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -151,14 +150,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -168,7 +167,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -185,7 +184,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
 
   Future<void> resendResetCode() async {
     final String? email = await storage.read(key: 'email');
-   
+
     if (email!.isEmpty) {
       // Show an error message if email or password is empty
       // You can customize this message as needed
@@ -196,14 +195,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'Please enter your email.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -213,7 +212,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -240,14 +239,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               'Success',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'Verification code sent to email.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -259,7 +258,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -275,14 +274,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
               'Error',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             content: Text(
               'An error occurred. Please try again later.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontFamily: 'Lato',
+                fontFamily: 'Poppins',
               ),
             ),
             actions: [
@@ -292,7 +291,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                   'OK',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onTertiary,
-                    fontFamily: 'Lato',
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -310,14 +309,14 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
             'Error',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           content: Text(
             'An error occurred. Please try again later.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.onTertiary,
-              fontFamily: 'Lato',
+              fontFamily: 'Poppins',
             ),
           ),
           actions: [
@@ -327,7 +326,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                 'OK',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onTertiary,
-                  fontFamily: 'Lato',
+                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -362,7 +361,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 14,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -390,7 +389,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                         'Resend Code',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onTertiary,
-                          fontFamily: 'Lato',
+                          fontFamily: 'Poppins',
                         ),
                       ))
                 ],
@@ -417,7 +416,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                     ),
                   ),
                 ],
@@ -442,7 +441,7 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onTertiary,
                       fontSize: 16,
-                      fontFamily: 'Lato',
+                      fontFamily: 'Poppins',
                     ),
                   ),
                 ],

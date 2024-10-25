@@ -137,13 +137,16 @@ class _SideMenuState extends State<SideMenu> {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'SecurePass',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontSize: 16,
-                    fontFamily: 'Lato',
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  // Wrap the Text widget with Expanded
+                  child: Text(
+                    'SecurePass',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      fontSize: 16,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],

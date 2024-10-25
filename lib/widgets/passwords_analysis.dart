@@ -28,8 +28,8 @@ class PasswordsAnalysis extends StatelessWidget {
               ),
               width: MediaQuery.of(context).size.width * 0.3,
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +38,7 @@ class PasswordsAnalysis extends StatelessWidget {
                       '28',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
@@ -47,7 +47,7 @@ class PasswordsAnalysis extends StatelessWidget {
                       'Saved Passwords',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
@@ -62,8 +62,8 @@ class PasswordsAnalysis extends StatelessWidget {
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +72,7 @@ class PasswordsAnalysis extends StatelessWidget {
                       '28',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
@@ -81,7 +81,7 @@ class PasswordsAnalysis extends StatelessWidget {
                       'Strong',
                       style: TextStyle(
                         color: Colors.greenAccent,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
@@ -96,8 +96,8 @@ class PasswordsAnalysis extends StatelessWidget {
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,8 +105,8 @@ class PasswordsAnalysis extends StatelessWidget {
                     Text(
                       '28',
                       style: TextStyle(
-                        color:Theme.of(context).colorScheme.onTertiary,
-                        fontFamily: 'Lato',
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
@@ -115,7 +115,7 @@ class PasswordsAnalysis extends StatelessWidget {
                       'Weak',
                       style: TextStyle(
                         color: Colors.redAccent,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
@@ -129,9 +129,9 @@ class PasswordsAnalysis extends StatelessWidget {
           Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              child:  Padding(
-                padding:
-                    const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 20, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,16 +140,16 @@ class PasswordsAnalysis extends StatelessWidget {
                       '28',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
                       ),
                     ),
-                   const Text(
+                    const Text(
                       'Duplicate',
                       style: TextStyle(
                         color: Colors.orangeAccent,
-                        fontFamily: 'Lato',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
